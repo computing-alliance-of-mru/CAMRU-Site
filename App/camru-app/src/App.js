@@ -1,10 +1,7 @@
-import logo from './logo.svg';
 import React, { useState } from "react";
 import './App.css';
 import ContactForm from './components/ContactForm.js';
-import ReCAPTCHA from 'react-google-recaptcha';
-
-
+require('dotenv').config();
 
 
 function App() {
@@ -19,7 +16,8 @@ function App() {
         size="invisible"
         onChange={onChange}
         theme='dark'
-      /> */}
+      /> */
+      }
     </div>
   );
 }
