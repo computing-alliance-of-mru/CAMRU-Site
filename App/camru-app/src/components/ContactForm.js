@@ -1,3 +1,6 @@
+//https://w3collective.com/react-contact-form/
+//https://www.npmjs.com/package/react-google-recaptcha
+
 import React, { useEffect, useState } from "react";
 import ReCAPTCHA from 'react-google-recaptcha';
 
@@ -36,27 +39,29 @@ const ContactForm = (prop) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" value="dylan" required />
-      </div>
-      <div>
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" value="email@email.ca" required />
-      </div>
-      <div>
-        <label htmlFor="message">Message:</label>
-        <textarea id="message" value="test" required />
-      </div>
-      <ReCAPTCHA
-        sitekey={process.env.REACT_APP_CAPTCHA_TEST_SITE_KEY}
-        ref={recaptchaRef}
-        size="invisible"
-        theme="dark"
-      />
-      <button type="submit" disabled={submitting}>{status} </button>
-    </form>
+    <div class="w-full max-w-lg">
+      <form onSubmit={handleSubmit} class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+        <div class="mb-4">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">Name:</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="name" required />
+        </div>
+        <div class="mb-4">
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">Email:</label>
+          <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" id="email" required />
+        </div>
+        <div>
+          <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message:</label>
+          <textarea class=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"id="message" required />
+        </div>
+        <ReCAPTCHA
+          sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY}
+          ref={recaptchaRef}
+          size="invisible"
+          theme="dark"
+        />
+        <button class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" disabled={submitting}>{status} </button>
+      </form>
+    </div>
   );
 };
 
