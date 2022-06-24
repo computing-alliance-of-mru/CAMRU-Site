@@ -3,10 +3,28 @@ import fetch from 'node-fetch';
 import cors from "cors" ;
 import nodemailer from "nodemailer";
 import config from '../config.js';
+import mysql from 'mysql';
 
 const router = express.Router();
 import dotenv from 'dotenv';
 dotenv.config();
+
+let cnn = mysql.createConnection({
+    host:  config.sql_host,
+    port: config.sql_port,
+    user: config.sql_user,
+    password: config.sql_pass,
+    database: config.sql_database,
+});
+
+cnn.connect(function(err) {
+    if (err) {
+        console.error('error connecting: ' + err.stack);
+        return;
+    }
+
+    console.log('connected as id ' + cnn.threadId);
+});
 
 
 const app = express();
@@ -58,12 +76,12 @@ router.post('/contact', async (req, res) => {
 
     // Create reusable transporter object using the default SMTP transport
     const transporter = nodemailer.createTransport({
-        host:  config.host,
-        port: config.port,
+        host:  config.email_host,
+        port: config.email_port,
         secure: false,
         auth: {
-            user: config.user,
-            pass: config.pass,
+            user: config.email_user,
+            pass: config.email_pass,
         },
         tls:{
             rejectUnauthorized:false,
