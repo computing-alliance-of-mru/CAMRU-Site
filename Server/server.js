@@ -9,6 +9,8 @@ const router = express.Router();
 import dotenv from 'dotenv';
 dotenv.config();
 
+//https://owasp.org/www-pdf-archive/AppSecIL2016_NodeJS-Security_LiranTal.pdf
+//https://www.namecheap.com/support/knowledgebase/article.aspx/1249/89/how-to-remotely-connect-to-a-mysql-database-located-on-our-shared-server/
 let cnn = mysql.createConnection({
     host:  config.sql_host,
     port: config.sql_port,
@@ -19,7 +21,7 @@ let cnn = mysql.createConnection({
 
 cnn.connect(function(err) {
     if (err) {
-        console.error('error connecting: ' + err.stack);
+        console.error('error connecting to database ');
         return;
     }
 
@@ -49,7 +51,7 @@ async function validateHuman(token) {
   
 
 router.post('/contact', async (req, res) => {
-
+    
     const human = await validateHuman(req.body.token);
     //console.log(req)
     // Email Template
@@ -62,7 +64,7 @@ router.post('/contact', async (req, res) => {
     }
     
     console.log("Human validation success!!")
-    
+
     const output = `
         <p>You have a message</p>
         <h3>Contact Details</h3>
