@@ -13,11 +13,11 @@ import { Route, Routes } from "react-router-dom";
 function App() {
 
   return (
-
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Contact" element={<ContactForm />} />
       <Route path="/About" element={<Waves />} />
+      <Route path="/Events" element={<Waves />} />
     </Routes>
   );
 }

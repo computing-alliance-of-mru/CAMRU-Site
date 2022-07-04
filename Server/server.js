@@ -102,7 +102,7 @@ router.post('/contact', async (req, res) => {
     // Send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            res.json({ status: "" + error});
+            res.json({ status: "Failed to Send Message", error: error });
           } else {
             res.json({ status: "Message Sent" });
           }
