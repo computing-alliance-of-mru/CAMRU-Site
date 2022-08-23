@@ -8,7 +8,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <React.StrictMode>
-      <App class="h-[100%]"/>
+      <App className="h-[100%]"/>
     </React.StrictMode>
   </BrowserRouter>
 );

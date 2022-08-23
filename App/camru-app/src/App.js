@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import ContactForm from './components/ContactForm.js';
 import Home from './components/Home.js';
-import Waves from './animated-background/Wave.js';
-import { Route, Routes } from "react-router-dom";
+import Waves from './animated-components/Wave.js';
+import SignUp from './components/SignUp.js';
+import Events from './components/Events.js';
+import { Route, Routes, useLocation } from "react-router-dom";
+import VantaWaves from "./VantaJS-animated/VantaWaves.js";
+import WorkInProgress from "./components/WorkInProgress.js";
 
 //animated backgrounds
 //https://animatedbackgrounds.me/
@@ -12,12 +16,16 @@ import { Route, Routes } from "react-router-dom";
 
 function App() {
 
+  const location = useLocation();
+  console.log(location.pathname);
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Contact" element={<ContactForm />} />
       <Route path="/About" element={<Waves />} />
-      <Route path="/Events" element={<Waves />} />
+      <Route path="/SignUp" element={<SignUp />} />
+      <Route path="/Events" element={<WorkInProgress />} />
     </Routes>
   );
 }
