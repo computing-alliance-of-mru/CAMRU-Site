@@ -14,6 +14,14 @@ const Navbar = (props) => {
         }
     }
 
+    useEffect(() => {
+        function handleResize() {
+            setOpen(false);
+        } 
+        window.addEventListener('resize', handleResize)
+    });
+    
+
     function makeFixed() {
         if(isOpen){
             return "fixed";
