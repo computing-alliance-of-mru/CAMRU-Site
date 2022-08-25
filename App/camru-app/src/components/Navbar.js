@@ -32,6 +32,11 @@ const Navbar = (props) => {
             <ul className="sm:block text-sm sm:flex-grow pl-6">
                 <Link to="/">
                     <li className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 font-semibold underline">
+                        Home
+                    </li>
+                </Link>
+                <Link to="/About">
+                    <li className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 font-semibold">
                         About Us
                     </li>
                 </Link>
