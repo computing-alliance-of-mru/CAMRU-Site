@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './waves.css';
+import Navbar from '../components/Navbar.js';
 
 const Waves = (props) => {
 
