@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from '../assets/camru-ff-trimed.png';
 import { Squash as Hamburger } from 'hamburger-react'
 
 const Navbar = (props) => {
     const [isOpen, setOpen] = useState(false);
+
+    const location = useLocation();
+
+    const [isHome, setHome] = useState(false);
+    const [isContact, setContact] = useState(false);
+    const [isAbout, setAbout] = useState(false);
+    const [isSignUp, setSignUp] = useState(false);
+    const [isEvents, setEvents] = useState(false);
 
     function getListOfLinks() {
         if(isOpen){
@@ -14,12 +22,23 @@ const Navbar = (props) => {
         }
     }
 
+
+    
+    
+    
+
     useEffect(() => {
+        location.pathname === "/" ? setHome(true) : setHome(false);
+        location.pathname === "/Contact" ? setContact(true) : setContact(false);
+        location.pathname === "/About" ? setAbout(true) : setAbout(false);
+        location.pathname === "/SignUp" ? setSignUp(true) : setSignUp(false);
+        location.pathname === "/Events" ? setEvents(true) : setEvents(false);
+
         function handleResize() {
             setOpen(false);
         } 
         window.addEventListener('resize', handleResize)
-    });
+    }, [location]);
     
 
     function makeFixed() {
@@ -39,27 +58,27 @@ const Navbar = (props) => {
         <div className={"sm:bg-none sm:flex-grow sm:flex sm:items-center sm:w-auto sm:static " + getListOfLinks()}>
             <ul className="sm:block text-sm sm:flex-grow pl-6">
                 <Link to="/">
-                    <li className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 font-semibold underline">
+                    <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isHome ? "underline font-semibold" : "")}>
                         Home
                     </li>
                 </Link>
                 <Link to="/About">
-                    <li className="block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 font-semibold">
+                    <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isAbout ? "underline font-semibold" : "")} >
                         About Us
                     </li>
                 </Link>
                 <Link to="/Events">
-                    <li className="block mt-4 sm:inline-block sm:mt-0 text-white font-semibold hover:text-[rgb(2,48,72)] mr-4">
+                    <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isEvents ? "underline font-semibold" : "")}>
                         Events
                     </li>
                 </Link>
                 <Link to="/Contact">
-                    <li className="block mt-4 sm:inline-block sm:mt-0 text-white font-semibold hover:text-[rgb(2,48,72)] mr-4">
+                    <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 "  + (isContact ? "underline font-semibold" : "")}>
                         Contact
                     </li>
                 </Link>
                 <Link to="/SignUp">
-                    <li className="block mt-4 sm:inline-block sm:mt-0 text-white font-semibold hover:text-[rgb(2,48,72)] mr-4">
+                    <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isSignUp ? "underline font-semibold" : "")}>
                         Sign Up
                     </li>
                 </Link>

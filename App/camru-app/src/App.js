@@ -16,8 +16,7 @@ import WorkInProgress from "./components/WorkInProgress.js";
 
 function App() {
 
-  const location = useLocation();
-  console.log(location.pathname);
+  
 
   return (
     <Routes>
