@@ -4,7 +4,14 @@ module.exports = {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'camru-blue': '#023048',
+        'camru-blue2': '#023756',
+        'camru-blue3': '#015983',
+        'camru-blue4': '#016A98',
+      },
+    },
   },
   screens: {
     'sm': '576px',
