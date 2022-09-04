@@ -4,6 +4,7 @@ import Home from './components/Home.js';
 import Waves from './animated-components/Wave.js';
 import SignUp from './components/SignUp.js';
 import Events from './components/Events.js';
+import About from './components/About.js';
 import { Route, Routes, useLocation } from "react-router-dom";
 import VantaWaves from "./VantaJS-animated/VantaWaves.js";
 import WorkInProgress from "./components/WorkInProgress.js";
@@ -22,7 +23,7 @@ function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/Contact" element={<ContactForm />} />
-      <Route path="/About" element={<Waves />} />
+      <Route path="/About" element={<About />} />
       <Route path="/SignUp" element={<SignUp />} />
       <Route path="/Events" element={<WorkInProgress />} />
     </Routes>
