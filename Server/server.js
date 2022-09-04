@@ -4,6 +4,9 @@ import cors from "cors" ;
 import nodemailer from "nodemailer";
 import config from '../config.js';
 import mysql from 'mysql';
+// jsonweb automatically adds a key that determines the time, but you can use any module
+import jwt from 'jsonwebtoken';
+
 
 const router = express.Router();
 import dotenv from 'dotenv';
@@ -24,10 +27,20 @@ cnn.connect(function(err) {
         console.error('error connecting to database ');
         return;
     }
-
     console.log('connected as id ' + cnn.threadId);
 });
 
+
+function encodeRegistrationToken(userId)
+{
+    // The information we need to find our user in the database (not sensible info)
+    let info = {id: userId};
+
+    // The hash we will be sending to the user
+    const token = jwt.sign(info, process.env.REACT_APP_USER_SECRET_KEY);
+
+    return token;
+}
 
 const app = express();
 app.use(cors());
@@ -108,4 +121,38 @@ router.post('/contact', async (req, res) => {
           }
     });
 });
+
+router.post('/signup', async (req, res) => {
+
+    const human = await validateHuman(req.body.token);
+    //console.log(req)
+    // Email Template
+    
+    // Alert if successfully sending email
+    if (!human) {
+        res.status(400);
+        res.json({ status: "Human validation failed!!" });
+        return;
+    }
+
+    //check if email is already in use
+    //note does have protection against sql injection
+    cnn.query('SELECT * FROM users WHERE email = ?', [req.body.email], function (error, results, fields) {
+
+    });
+
+
+    let token = encodeRegistrationToken();
+
+    
+
+    res.json({ status: "Welcome To Camru!"});
+});
+
+
+router.post('/verify', async (req, res) => {
+    let decoded = jwt.verify(token, process.env.REACT_APP_USER_SECRET_KEY);
+});
+
+
 

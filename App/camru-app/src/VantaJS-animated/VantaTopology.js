@@ -24,7 +24,7 @@ const VantaTopology = (props) => {
       if (vantaEffect) vantaEffect.destroy()
     }
   }, [vantaEffect])
-  return <div className="h-[100vh] absolute top-0 w-full -z-10" ref={myRef}>
+  return <div className="h-[100vh] absolute top-0 w-[100%] -z-10" ref={myRef}>
     
   </div>
 }

@@ -62,6 +62,7 @@ const ContactForm = (prop) => {
     setSubmitting(true);
 
     setStatus("Sending...");
+    console.log(e.target.elements);
     const { name, email, message } = e.target.elements;
     let details = {
       name: name.value,
@@ -80,8 +81,9 @@ const ContactForm = (prop) => {
     setStatus("Submit");
     let result = await response.json();
     setMessage(result.status);
-    console.error(result.error);
+    console.log(result.error ? result.error : result.status);
     setSubmitting(false);
+    e.target.reset();
   };
 
   return (

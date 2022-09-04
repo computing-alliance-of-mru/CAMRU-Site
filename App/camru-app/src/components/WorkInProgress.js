@@ -28,7 +28,7 @@ const WorkInProgress = (prop) => {
           speed={40}
           wrapper="div"
           repeat={Infinity}
-          className={"text-3xl font-bold text-white px-10"}
+          className={"text-3xl font-bold text-white px-8"}
         />
       </div>
       <div className="w-full bottom-0" > 
