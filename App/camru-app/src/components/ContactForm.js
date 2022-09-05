@@ -77,6 +77,8 @@ const ContactForm = (prop) => {
         "Content-Type": "application/json;charset=utf-8",
       },
       body: JSON.stringify(details),
+    }).catch((error) => {
+      setMessage("Failed to connect to server");
     });
     setStatus("Submit");
     let result = await response.json();
