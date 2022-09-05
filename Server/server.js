@@ -8,7 +8,9 @@ import mysql from 'mysql';
 import jwt from 'jsonwebtoken';
 
 
+
 const router = express.Router();
+
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -46,6 +48,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use("/", router);
+
 app.listen(5000, () => console.log("Server Running"));
 
 
@@ -155,4 +158,10 @@ router.post('/verify', async (req, res) => {
 });
 
 
+router.get('/database/execs', async (req, res) => {
+    cnn.query('SELECT * FROM ExecutiveTeam where active = 1 order by priority desc', function (error, results, fields) {
+        if (error) throw error;
+        res.json(results);
+    });
+});
 
