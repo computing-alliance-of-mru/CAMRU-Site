@@ -11,7 +11,7 @@ import VantaNet from "../VantaJS-animated/VantaNet.js";
 import CheckBox from '../animated-components/Checkbox.js';
 
 
-const Signup = (prop) => {
+const Signup = (props) => {
   const recaptchaRef = React.useRef(null);
   const [status, setStatus] = useState("Submit");
   const [message, setMessage] = useState("");
@@ -94,9 +94,11 @@ const Signup = (prop) => {
   };
 
   return (
+
     <div className="w-full h-[100vh] relative">
-      <Navbar />
+      <Navbar isLoggedIn={props.isLoggedIn}/>
       <VantaNet styles={"fixed h-[100vh]"}/>
+
       <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
         <div></div>
         <div className="w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">

@@ -11,7 +11,9 @@ const Home = (props) => {
 
  return (
     <div className="w-full h-[100vh]">
-      <Navbar />
+      <Navbar 
+      isLoggedIn={props.isLoggedIn}
+      />
       <div className="absolute top-0 w-full -z-10">
         <Waves/>
       </div>

@@ -12,7 +12,7 @@ import Footer from "./Footer.js";
 import Discord from "./Discord.js";
 
 
-const Events = (prop) => {
+const Events = (props) => {
   
   return (
     <div className="w-full h-[100vh]">
