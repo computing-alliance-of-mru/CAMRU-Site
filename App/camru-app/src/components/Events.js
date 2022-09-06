@@ -9,6 +9,7 @@ import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
 import Waves from '../animated-components/Wave.js';
 import Footer from "./Footer.js";
+import Discord from "./Discord.js";
 
 
 const Events = (prop) => {
@@ -21,6 +22,7 @@ const Events = (prop) => {
       </div>
       <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
         <div></div>
+        <Discord />
         <diV></diV>
         <div className="w-full bottom-0" > 
           <Footer />
