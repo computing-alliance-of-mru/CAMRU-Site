@@ -6,10 +6,14 @@ import Events from './components/Events.js';
 import About from './components/About.js';
 import { Route, Routes, useLocation } from "react-router-dom";
 import WorkInProgress from "./components/WorkInProgress.js";
+
 import Admin from "./components/Admin.js";
 import ControlPanel from "./components/ControlPanel.js";
 import Axios from "axios";
 import Logout from "./components/Logout.js";
+
+import VantaNet from "./VantaJS-animated/VantaNet.js";
+
 
 //animated backgrounds
 //https://animatedbackgrounds.me/
@@ -18,6 +22,7 @@ import Logout from "./components/Logout.js";
 //https://www.passportjs.org/tutorials/google/
 
 function App() {
+
 
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
@@ -88,6 +93,7 @@ function App() {
           setIsLoggedIn={setIsLoggedIn}
         />
       } />
+
     </Routes>
   );
 }

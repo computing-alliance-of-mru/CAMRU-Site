@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 const ExecutiveTeam = (props) => {
 
   // get request to get all the executive team members
-  const [executiveTeam, setExecutiveTeam] = useState(0);
+  const [executiveTeam, setExecutiveTeam] = useState();
   useEffect(() => {
     fetch('http://localhost:5000/database/execs')
       .then(response => response.json())

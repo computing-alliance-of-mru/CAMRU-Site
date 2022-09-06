@@ -31,7 +31,9 @@ let cnn = mysql.createConnection({
     database: config.sql_database,
 });
 
+
 cnn.connect(function (err) {
+
     if (err) {
         console.error('error connecting to database ');
         return;
@@ -51,6 +53,35 @@ function encodeRegistrationToken(userId) {
     const token = jwt.sign(info, process.env.REACT_APP_USER_SECRET_KEY);
 
     return token;
+}
+
+function decodeRegistrationToken(token)
+{   
+    let decoded = jwt.verify(token, process.env.REACT_APP_USER_SECRET_KEY);
+
+    let userId = decoded.id;
+
+    // Check that the user didn't take too long
+    let dateNow = new Date();
+    let tokenTime = decoded.iat * 1000;
+
+    // six hours
+    let hours = 6;
+    let tokenLife = hours * 60 * 1000;
+
+    // User took too long to enter the code
+    if (tokenTime + tokenLife < dateNow.getTime())
+    {
+        return {            
+            expired: true,
+        };
+    }
+
+    // User registered in time
+    return {
+        userId
+    };
+
 }
 
 const app = express();
@@ -124,18 +155,7 @@ async function validateHuman(token) {
 router.post('/contact', async (req, res) => {
 
     const human = await validateHuman(req.body.token);
-    //console.log(req)
     // Email Template
-
-    // Alert if successfully sending email
-    if (!human) {
-        res.status(400);
-        res.json({ status: "Human validation failed!!" });
-        return;
-    }
-
-    console.log("Human validation success!!")
-
     const output = `
         <p>You have a message</p>
         <h3>Contact Details</h3>
@@ -144,8 +164,13 @@ router.post('/contact', async (req, res) => {
         <h3>Message</h3>
         <p>${req.body.message}</p>
     `;
-    // Alert if failed to sending email
 
+    // Alert if successfully sending email
+    if (!human) {
+        res.status(400);
+        res.json({ status: "Human validation failed!!" });
+        return;
+    }
 
     // Create reusable transporter object using the default SMTP transport
     const transporter = nodemailer.createTransport({
@@ -160,6 +185,10 @@ router.post('/contact', async (req, res) => {
             rejectUnauthorized: false,
         },
     });
+        
+    console.log("Human validation success!!")
+
+    
 
     // Setup email settings
     const mailOptions = {
@@ -193,24 +222,106 @@ router.post('/signup', async (req, res) => {
         return;
     }
 
-    //check if email is already in use
-    //note does have protection against sql injection
-    cnn.query('SELECT * FROM users WHERE email = ?', [req.body.email], function (error, results, fields) {
-
+    const transporter = nodemailer.createTransport({
+        host:  config.email_host,
+        port: config.email_port,
+        secure: false,
+        auth: {
+            user: config.email_user,
+            pass: config.email_pass,
+        },
+        tls:{
+            rejectUnauthorized:false,
+        },
     });
+    
+    
+    let member = { name: `${req.body.first} ${req.body.last}`, email: `${req.body.email}`, Program: `${req.body.program}`, CurrentYear: `${req.body.year}`};
+    await cnn.query('SELECT * FROM MailingList where Email=?', req.body.email, function (error, results, fields) {
+        if (error) throw error;
+        if(results.length == 0) {
+            cnn.query('INSERT INTO MailingList SET ?', member, function (error, results, fields) {
+                if (error) throw error;
+                let userID = results.insertId || 9999;
+                let token = encodeRegistrationToken(userID);
+                //send email
+                let link = `http://localhost:5000/verify?id=${token}`;
+                const output = `
+                <h3>Welcome To CAMRU</h3>
+                <p>Hello,<br> Please Click on the link to verify your email.</p><br><a href="${link}">Click here to verify</a> 
+                `;
+                const mailOptions = {
+                    from: config.singUp,
+                    to: req.body.email,
+                    subject: "Please confirm your Email account",
+                    html: output,
+                };
+                // Send mail with defined transport object
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        res.json({ status: "Failed to Sign Up", error: error });
+                    } else {
+                        res.json({ status: "Check your email to verify your account" });
+                    }
+                });    
 
+            });
+        } else {
+            console.log(results);
+            if(results[0].verified == 1) {
+                res.json({ status: "Email already exists" });
+            } else {
+                let userID = results[0].ID;
+                let token = encodeRegistrationToken(userID);
+                //send email
+                let link = `http://localhost:5000/verify?id=${token}`;
+                const output = `
+                <h3>Welcome To CAMRU</h3>
+                <p>Hello,<br> Please Click on the link to verify your email.</p><br><a href="${link}">Click here to verify</a> 
+                `;
+                const mailOptions = {
+                    from: config.singUp,
+                    to: req.body.email,
+                    subject: "Please confirm your Email account",
+                    html: output,
+                };
+                // Send mail with defined transport object
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        res.json({ status: "Failed to Sign Up", error: error });
+                    } else {
+                        res.json({ status: "Check your email to verify your account" });
+                    }
+                });    
+            }
+        }
+    }); 
 
-    let token = encodeRegistrationToken();
-
-
-
-    res.json({ status: "Welcome To Camru!" });
 });
 
 
-router.post('/verify', async (req, res) => {
-    let decoded = jwt.verify(token, process.env.REACT_APP_USER_SECRET_KEY);
+
+router.get('/verify', async (req, res) => {
+
+    let token = decodeRegistrationToken(req.query.id);
+    if (token.expired) {
+        res.redirect('http://localhost:3000/Expired');
+        return;
+    }
+    let userId = token.userId;
+
+    cnn.query(`UPDATE MailingList SET verified = ? WHERE ID = ?`, [1, userId], function (error, results, fields) {
+        if (error) {
+            res.json({ status: "Error Updating Account" });
+            throw error;
+        }
+        res.redirect('http://localhost:3000/Events');
+     });
+
 });
+
+
+
 
 
 router.post('/logout', function (req, res, next) {
