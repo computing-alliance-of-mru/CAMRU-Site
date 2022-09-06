@@ -1,8 +1,8 @@
 .checkbox {
     --background: #fff;
-    --border: #D1D6EE;
-    --border-hover: #BBC1E1;
-    --border-active: #1E2235;
+    --border: #023048;
+    --border-hover: #00b1ff;
+    --border-active: #0f7ca7;
     --tick: #fff;
     position: relative;
   }
@@ -29,9 +29,16 @@
     --s: 2px;
     --b: var(--border-hover);
   }
+
+  
   .checkbox input:checked {
     --b: var(--border-active);
   }
+  
+  .checkbox input:focus {
+    --b: var(--border-hover);
+  }
+
   .checkbox svg {
     pointer-events: none;
     fill: none;

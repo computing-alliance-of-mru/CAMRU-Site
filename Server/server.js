@@ -64,7 +64,7 @@ function decodeRegistrationToken(token)
     if (tokenTime + tokenLife < dateNow.getTime())
     {
         return {            
-            expired: true
+            expired: true,
         };
     }
 
@@ -181,16 +181,7 @@ router.post('/signup', async (req, res) => {
     });
     
     
-    
-    // first: fname.value,
-    // last: lname.value,
-    // program: program.value,
-    // year: year.value,
-    // email: email.value,
-    // token: capchaToken,
-    
     let member = { name: `${req.body.first} ${req.body.last}`, email: `${req.body.email}`, Program: `${req.body.program}`, CurrentYear: `${req.body.year}`};
-    let link = `http://localhost:3000/`;
     await cnn.query('SELECT * FROM MailingList where Email=?', req.body.email, function (error, results, fields) {
         if (error) throw error;
         if(results.length == 0) {
@@ -199,51 +190,81 @@ router.post('/signup', async (req, res) => {
                 let userID = results.insertId || 9999;
                 let token = encodeRegistrationToken(userID);
                 //send email
-                console.log(`http://localhost:5000/verify?id=${token}`);
-                res.json({ status: "Check your email to verify your account" });
+                let link = `http://localhost:5000/verify?id=${token}`;
+                const output = `
+                <h3>Welcome To CAMRU</h3>
+                <p>Hello,<br> Please Click on the link to verify your email.</p><br><a href="${link}">Click here to verify</a> 
+                `;
+                const mailOptions = {
+                    from: config.singUp,
+                    to: req.body.email,
+                    subject: "Please confirm your Email account",
+                    html: output,
+                };
+                // Send mail with defined transport object
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        res.json({ status: "Failed to Sign Up", error: error });
+                    } else {
+                        res.json({ status: "Check your email to verify your account" });
+                    }
+                });    
+
             });
         } else {
-            res.json({ status: "Email Already Registered" });
-            return;
+            console.log(results);
+            if(results[0].verified == 1) {
+                res.json({ status: "Email already exists" });
+            } else {
+                let userID = results[0].ID;
+                let token = encodeRegistrationToken(userID);
+                //send email
+                let link = `http://localhost:5000/verify?id=${token}`;
+                const output = `
+                <h3>Welcome To CAMRU</h3>
+                <p>Hello,<br> Please Click on the link to verify your email.</p><br><a href="${link}">Click here to verify</a> 
+                `;
+                const mailOptions = {
+                    from: config.singUp,
+                    to: req.body.email,
+                    subject: "Please confirm your Email account",
+                    html: output,
+                };
+                // Send mail with defined transport object
+                transporter.sendMail(mailOptions, (error, info) => {
+                    if (error) {
+                        res.json({ status: "Failed to Sign Up", error: error });
+                    } else {
+                        res.json({ status: "Check your email to verify your account" });
+                    }
+                });    
+            }
         }
-    });
-
-
-    //cant get it to send email
-    // const output = `
-    // <h3>Welcome To CAMRU</h3>
-    // <p>Hello,<br> Please Click on the link to verify your email.</p><br><a href="${link}">Click here to verify</a> 
-    // `;
-    // const mailOptions = {
-    //     from: config.from,
-    //     to: req.body.email,
-    //     subject: "Welcome To CAMRU",
-    //     html: output,
-    // };
-
-    // // Send mail with defined transport object
-    // transporter.sendMail(mailOptions, (error, info) => {
-    //     if (error) {
-    //         res.json({ status: "Failed to Send Message", error: error });
-    //       } else {
-    //           res.json({ status: "Welcome To Camru!"});
-    //       }
-    // });    
+    }); 
 
 });
 
 
 router.get('/verify', async (req, res) => {
 
-    let userId = await decodeRegistrationToken(req.query.id).userId;
+    let token = decodeRegistrationToken(req.query.id);
+    if (token.expired) {
+        res.redirect('http://localhost:3000/Expired');
+        return;
+    }
+    let userId = token.userId;
 
     cnn.query(`UPDATE MailingList SET verified = ? WHERE ID = ?`, [1, userId], function (error, results, fields) {
-        if (error) throw error;
-        console.log("Verified!");
-    });
-
-
+        if (error) {
+            res.json({ status: "Error Updating Account" });
+            throw error;
+        }
+        res.redirect('http://localhost:3000/Events');
+     });
 });
+
+
+
 
 
 router.get('/database/execs', async (req, res) => {
