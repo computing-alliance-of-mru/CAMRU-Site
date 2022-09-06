@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Logo from '../assets/camru-trimed.png';
 import { ToastContainer, toast } from 'react-toastify';
-
+import {  Navigate } from "react-router-dom";
 
 import Axios from 'axios';
 
@@ -29,8 +29,7 @@ const Login = (props) => {
             if (res.data === "No User Exists") {
                 toast.error("Invalid Username or Password");
             } else {
-            // store the user in the local storage
-            window.location.href = "/controlpanel";
+            props.setIsLoggedIn(true);
             }
         });
       };
@@ -47,6 +46,12 @@ const Login = (props) => {
         });
       };
 
+      if (props.isLoggedIn) {
+
+        return (
+          <Navigate to="/controlPanel" />
+        );
+      }
 
     return (
         <section class="h-screen">

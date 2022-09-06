@@ -17,7 +17,7 @@ const Admin = (props) => {
 
       </div>
       <div className="w-full flex flex-col relative xl:h-[calc(95vh)] lg:h-[calc(115vh)] sm:h-[calc(150vh)] h-[calc(240vh)] justify-between">
-        <Login />
+        <Login isLoggedIn={props.isLoggedIn} setIsLoggedIn={props.setIsLoggedIn}/>
         <div className="w-full bottom-0" >
           <Footer />
         </div>

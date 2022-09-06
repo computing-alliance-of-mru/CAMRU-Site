@@ -90,16 +90,17 @@ const Navbar = (props) => {
                             ControlPanel
                         </li>
                     </Link>) : null}
-                    {props.isLoggedIn ? (<Link to="/logout">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " }>
-                            Logout
-                        </li>
-                    </Link>) : null}
+                    
 
 
                 </ul>
             </div>
-            <div className="sm:flex absolute flex left-0 top-[12px] w-[80px] ml-[calc(100%-132px)]">
+            <div className="sm:flex absolute flex left-0 top-[12px] w-[80px] ml-[calc(100%-190px)]">
+            {props.isLoggedIn ? (<Link to="/logout">
+                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " }>
+                            Logout
+                        </li>
+                    </Link>) : null}
                 <p className="text-white pr-4 font-bold">CAMRU</p>
                 <img className="h-6 w-auto" src={logo} alt="camru logo" />
             </div>

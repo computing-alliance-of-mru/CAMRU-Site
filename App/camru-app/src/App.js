@@ -74,6 +74,7 @@ function App() {
       <Route path="/Admin" element={
         <Admin
           isLoggedIn={isLoggedIn}
+          setIsLoggedIn={setIsLoggedIn}
         />
       } />
       <Route path="/ControlPanel" element={
