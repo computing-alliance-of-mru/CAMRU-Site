@@ -21,7 +21,7 @@ const VantaWaves = (props) => {
       if (vantaEffect) vantaEffect.destroy()
     }
   }, [vantaEffect])
-  return <div className={"absolute top-0 w-full -z-10 " + props.styles} ref={myRef}>
+  return <div className={"top-0 w-full -z-10 " + props.styles} ref={myRef}>
     
   </div>
 }

@@ -288,7 +288,7 @@ router.post('/signup', async (req, res) => {
                 // Send mail with defined transport object
                 transporter.sendMail(mailOptions, (error, info) => {
                     if (error) {
-                        res.json({ status: "Failed to Sign Up", error: error });
+                        res.json({ status: "Failed to send verification email", error: error });
                     } else {
                         res.json({ status: "Check your email to verify your account" });
                     }

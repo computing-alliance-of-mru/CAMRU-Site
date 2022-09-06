@@ -113,22 +113,31 @@ const Signup = (props) => {
               <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="lname" required pattern="[A-Za-z]+"/>
             </div>
             <div className="mb-4">
+              <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="Role">Role:</label>
+              <select id="Role" class="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" required>
+                <option value="" disabled selected hidden>Choose a Role ...</option>
+                <option value="CIS">Student</option>
+                <option value="CS">Alumni</option>
+                <option value="Other">Prof</option>
+              </select>
+            </div>
+            <div className="mb-4 hidden">
               <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="program">Program:</label>
               <select id="program" class="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" required>
-                <option value="" disabled selected hidden>Choose a program ...</option>
+                <option value="0" disabled selected hidden>Choose a program ...</option>
                 <option value="CIS">Computer Information Systems</option>
                 <option value="CS">Computer Science</option>
                 <option value="Other">Other</option>
               </select>
             </div>
-            <div className="mb-4">
+            <div className="mb-4 hidden">
               <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="program">Year:</label>
               <select id="year" class="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" required>
-                <option value="" disabled selected hidden>Current Year...</option>
+                <option value="0" disabled selected hidden>Current Year...</option>
                 <option value="1">1st</option>
                 <option value="2">2nd</option>
                 <option value="3">3rd</option>
-                <option value="4+">4th +</option>
+                <option value="4">4th +</option>
               </select>
             </div>
             <div className="mb-2">
