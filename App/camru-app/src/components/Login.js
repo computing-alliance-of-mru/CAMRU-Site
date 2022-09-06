@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Logo from '../assets/camru-trimed.png';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
+
 import Axios from 'axios';
 
 const Login = (props) => {
@@ -25,8 +26,12 @@ const Login = (props) => {
           url: "http://localhost:5000/login",
         }).then((res) => {
             console.log(res)
+            if (res.data === "No User Exists") {
+                toast.error("Invalid Username or Password");
+            } else {
             // store the user in the local storage
             window.location.href = "/controlpanel";
+            }
         });
       };
       const getUser = () => {
@@ -45,8 +50,9 @@ const Login = (props) => {
 
     return (
         <section class="h-screen">
-            <ToastContainer />
+            
             <div class="container px-6 py-12 h-full">
+            <ToastContainer />
                 <div class="flex justify-center items-center flex-wrap h-full g-6 text-gray-800">
                     <div class="md:w-8/12 lg:w-6/12 mb-12 md:mb-0">
                         <img
@@ -56,6 +62,7 @@ const Login = (props) => {
                         />
                     </div>
                     <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
+                    
                         {/* <form action="http://localhost:5000/login/password" method="POST"> */}
                             {/* <!-- Email input --> */}
                             <div class="mb-6">
@@ -160,8 +167,9 @@ const Login = (props) => {
                     </div>
                 </div>
             </div>
+            
         </section>
-
+        
     );
 }
 
