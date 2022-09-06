@@ -1,44 +1,23 @@
 //creat component 
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import VantaNet from "../VantaJS-animated/VantaNet.js";
 import Footer from "./Footer.js";
 import Navbar from './Navbar.js';
-import SlidingDiagonals from '../animated-components/SlidingDiagonals.js';
 import Waves from "../animated-components/Wave.js";
-import Axios from "axios";
+import {  Navigate } from "react-router-dom";
 
 const ControlPanel = (props) => {
 
   // const [authenticated, setAuthenticated] = useState(null);
 
-  useEffect(() => {
-
-  
-
-    Axios({
-      method: "GET",
-      withCredentials: true,
-      url: "http://localhost:5000/user",
-    }).then((res) => {
-
-      // setData(res.data);
-      console.log(res.data);
-
-      if (res.data === "Not Authenticated") {
-        window.location.href = "/";
-      }
-
-    });
-
-  }, []);
-
-  // if (!authenticated) {
-  //   window.location.href = "/";
-  // } else {
+ 
+  if (!props.isLoggedIn) {
+    return <Navigate to="/" />
+ }
     return (
+      console.log(props.isLoggedIn),
       <div className="w-full h-[100vh]">
-        <Navbar />
+        <Navbar isLoggedIn={props.isLoggedIn}/>
         <div className="absolute top-0 w-full -z-10">
           <Waves />
         </div>
@@ -58,6 +37,6 @@ const ControlPanel = (props) => {
       </div>
     );
   }
-// }
+
 
 export default ControlPanel;

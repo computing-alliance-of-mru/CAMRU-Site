@@ -213,15 +213,10 @@ router.post('/verify', async (req, res) => {
 });
 
 
-router.post('/login/password', passport.authenticate('local', {
-    successRedirect: '/controlPanel',
-    failureRedirect: 'http://localhost:3000/admin',
-}));
-
 router.post('/logout', function (req, res, next) {
     req.logout(function (err) {
         if (err) { return next(err); }
-        res.redirect('/');
+        res.json({ status: "Logged Out" });
     });
 });
 
@@ -269,8 +264,6 @@ router.post("/register", (req, res) => {
 
  router.get("/user", (req, res) => {
 
-    // load the user html page
-    res.sendFile(path.join(__dirname, "../public/user.html"));
 
     if (req.isAuthenticated()) {
         res.send(req.user);

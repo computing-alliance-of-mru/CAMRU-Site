@@ -11,7 +11,7 @@ import Waves from '../animated-components/Wave.js';
 import Footer from "./Footer.js";
 
 
-const Events = (prop) => {
+const Events = (props) => {
   
   return (
     <div className="w-full h-[100vh]">

@@ -163,7 +163,7 @@ const Login = (props) => {
                             </a>
                         {/* </form> */}
                         
-                        
+                        <button onClick={getUser}>test</button>
                     </div>
                 </div>
             </div>

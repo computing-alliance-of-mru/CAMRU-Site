@@ -11,7 +11,7 @@ import Waves from '../animated-components/Wave.js';
 import { compact } from "lodash";
 import Footer from "./Footer.js";
 
-const ContactForm = (prop) => {
+const ContactForm = (props) => {
   const recaptchaRef = React.useRef(null);
   const [status, setStatus] = useState("Submit");
   const [message, setMessage] = useState("");
@@ -88,7 +88,7 @@ const ContactForm = (prop) => {
 
   return (
     <div className="w-full h-[100vh]">
-      <Navbar />
+      <Navbar isLoggedIn={props.isLoggedIn}/>
       <div className="absolute top-0 w-full -z-10">
         <Waves/>
       </div>

@@ -9,12 +9,12 @@ import Footer from "./Footer.js";
 import TypeAnimation from 'react-type-animation';
 
 
-const WorkInProgress = (prop) => {
+const WorkInProgress = (props) => {
   
 
   return (
     <div className="w-full h-[100vh] flex flex-col">
-      <Navbar />
+      <Navbar isLoggedIn={props.isLoggedIn}/>
       <VantaTopology />
       <div className="w-[100vw] h-[40px] realitive flex-grow mt-10">
         <TypeAnimation
