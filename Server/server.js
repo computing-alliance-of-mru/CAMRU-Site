@@ -268,6 +268,10 @@ router.post("/register", (req, res) => {
 
 
  router.get("/user", (req, res) => {
+
+    // load the user html page
+    res.sendFile(path.join(__dirname, "../public/user.html"));
+
     if (req.isAuthenticated()) {
         res.send(req.user);
     } else {
