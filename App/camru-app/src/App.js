@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ContactForm from './components/ContactForm.js';
 import Home from './components/Home.js';
 import SignUp from './components/SignUp.js';
-import Events from './components/Events.js';
+import Events from './components/GetInvolved.js';
 import About from './components/About.js';
 import NoMatch from './components/NoMatch.js';
 
@@ -15,6 +15,7 @@ import Axios from "axios";
 import Logout from "./components/Logout.js";
 
 import VantaNet from "./VantaJS-animated/VantaNet.js";
+import GetInvolved from "./components/GetInvolved.js";
 
 
 //animated backgrounds
@@ -73,10 +74,11 @@ function App() {
           isLoggedIn={isLoggedIn}
         />
       } />
+      <Route path="/Get_Involved" element={
+        <GetInvolved />
+      } />
       <Route path="/Events" element={
-        <WorkInProgress
-          isLoggedIn={isLoggedIn}
-        />
+        <Events />
       } />
       <Route path="/Admin" element={
         <Admin

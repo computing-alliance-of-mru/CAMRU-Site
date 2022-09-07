@@ -235,8 +235,9 @@ router.post('/signup', async (req, res) => {
         },
     });
     
-    
-    let member = { name: `${req.body.first} ${req.body.last}`, email: `${req.body.email}`, Program: `${req.body.program}`, CurrentYear: `${req.body.year}`};
+    console.log(req.body.role)
+    let member = { name: `${req.body.first} ${req.body.last}`, email: `${req.body.email}`, role: `${req.body.role}`, Program: `${req.body.program}`, CurrentYear: `${req.body.year}`};
+
     await cnn.query('SELECT * FROM MailingList where Email=?', req.body.email, function (error, results, fields) {
         if (error) throw error;
         if(results.length == 0) {
