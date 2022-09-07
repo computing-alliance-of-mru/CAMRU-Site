@@ -3,40 +3,77 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Footer from "./Footer.js";
 import Navbar from './Navbar.js';
-import Waves from "../animated-components/Wave.js";
-import {  Navigate } from "react-router-dom";
-
+import Float from "../animated-components/Float.js";
+import { Navigate } from "react-router-dom";
+import axios from "axios";
 const ControlPanel = (props) => {
 
   // const [authenticated, setAuthenticated] = useState(null);
 
- 
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = document.getElementById("name");
+    const position = document.getElementById("position");
+    const file = document.getElementById("image");
+    const formData = new FormData();
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+    formData.append("name", name.value);
+    formData.append("position", position.value);
+    formData.append("file", file.files[0]);
+    axios.post("http://localhost:5000/addexec", formData, config)
+
+};
+  const onClick = () => { };
+
+
   if (!props.isLoggedIn) {
-    return <Navigate to="/" />
- }
-    return (
-      console.log(props.isLoggedIn),
-      <div className="w-full h-[100vh]">
-        <Navbar isLoggedIn={props.isLoggedIn}/>
-        <div className="absolute top-0 w-full -z-10">
-          <Waves />
-        </div>
-        <div className="w-full flex flex-col relative  h-[calc(100vh-50px)] justify-between">
-          <div className="w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[90%] ml-[50%] translate-x-[-50%] py-8 ">
-            <h1 className=" text-center items-center font-bold text-white translate-y-[100%] sm:text-5xl md:text-6xl xl:text-7xl text-4xl">
-              Computing Alliance of Mount Royal University {console.log(props)}
-            </h1>
-            <div className="text-center items-center font-bold text-white md:translate-y-[800%] sm:translate-y-[600%] translate-y-[400%]">
-              A place for computing students to socialize, network, and learn.
+    // return <Navigate to="/" />
+    console.log("not logged in");
+  }
+  return (
+    console.log(props.isLoggedIn),
+    <div className="w-full h-[100vh]">
+      <Navbar isLoggedIn={props.isLoggedIn} />
+      <div className="absolute top-0 w-full -z-10">
+        <Float />
+      </div>
+      <div className="w-full flex flex-col relative  h-[calc(100vh-50px)] justify-between">
+        <div className="w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[90%] ml-[50%] translate-x-[-50%] py-8 ">
+
+          <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+            <div className="">
+              <form onSubmit={handleSubmit} id="signup-form" className="px-6 py-6 flex flex-col">
+                <div className="mb-4">
+                  <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="name">Name:</label>
+                  <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="name" required  />
+                </div>
+                <div className="mb-4">
+                  <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="position">Position:</label>
+                  <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="position" required />
+                </div>
+                <div className="mb-4">
+                  <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="image">Image:</label>
+                  <input type="file" id="image" multiple className="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" />
+
+                </div>
+                <div className="mt-2 col-span-2 mx-auto">
+                  <button className="mt-2 sshadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:outline-[#00b1ff] text-white font-bold rounded w-32 text-xl py-3" type="submit" >Add Exec</button>
+                </div>
+              </form>
+
             </div>
+            <div className="">Events</div>
+
           </div>
-          <div className="w-full bottom-0" >
-            <Footer />
-          </div>
+        </div>
+        <div className="w-full bottom-0" >
+          <Footer />
         </div>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
 
 export default ControlPanel;

@@ -12,6 +12,23 @@ import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import crypto from 'crypto';
 import cookieParser from "cookie-parser";
+import multer from "multer";
+
+let storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+        // split the original file name by the dot
+        let splitName = file.originalname.split('.');
+        let currentDate = new Date();
+        let time = currentDate.toISOString().split('T')[1]
+        time = time.replace(/:/g, '-');
+        cb(null, splitName[0] + '-' + currentDate.toISOString().split('T')[0] + ' '+ time + '.' + splitName[1])
+    }
+})
+
+const upload = multer({ storage: storage });
 
 
 
@@ -55,8 +72,7 @@ function encodeRegistrationToken(userId) {
     return token;
 }
 
-function decodeRegistrationToken(token)
-{   
+function decodeRegistrationToken(token) {
     let decoded = jwt.verify(token, process.env.REACT_APP_USER_SECRET_KEY);
 
     let userId = decoded.id;
@@ -70,9 +86,8 @@ function decodeRegistrationToken(token)
     let tokenLife = hours * 60 * 1000;
 
     // User took too long to enter the code
-    if (tokenTime + tokenLife < dateNow.getTime())
-    {
-        return {            
+    if (tokenTime + tokenLife < dateNow.getTime()) {
+        return {
             expired: true,
         };
     }
@@ -108,6 +123,8 @@ app.use("/", router);
 
 app.listen(5000, () => console.log("Server Running"));
 
+// ---------------------------------- Passport ---------------------------------- //
+
 passport.use(new LocalStrategy(function verify(username, password, cb) {
     console.log('username: ' + username);
     cnn.query('SELECT * FROM Users WHERE username = ?', [username], function (error, results, fields) {
@@ -129,14 +146,16 @@ passport.use(new LocalStrategy(function verify(username, password, cb) {
 }));
 
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     done(null, user);
-  });
-  
-  passport.deserializeUser(function(user, done) {
-    done(null, user);
-  });
+});
 
+passport.deserializeUser(function (user, done) {
+    done(null, user);
+});
+
+
+// ---------------------------------- CAPTCHA ---------------------------------- //
 
 async function validateHuman(token) {
     const secret = process.env.REACT_APP_CAPTCHA_SECRET_KEY;
@@ -150,7 +169,7 @@ async function validateHuman(token) {
     return data.success;
 }
 
-
+// ---------------------------------- CONTACT EMAIL ---------------------------------- //
 
 router.post('/contact', async (req, res) => {
 
@@ -185,10 +204,10 @@ router.post('/contact', async (req, res) => {
             rejectUnauthorized: false,
         },
     });
-        
+
     console.log("Human validation success!!")
 
-    
+
 
     // Setup email settings
     const mailOptions = {
@@ -209,6 +228,87 @@ router.post('/contact', async (req, res) => {
     });
 });
 
+
+// ---------------------------------- File Upload ---------------------------------- //
+
+router.post('/addexec', upload.single("file"), uploadFiles);
+
+function uploadFiles(req, res) {
+    console.log("upload body: ")
+    console.log(req.body);
+    console.log("upload files: ")
+    console.log(req.file);
+    res.json({ message: "Successfully uploaded files" });
+}
+
+// ---------------------------------------------- Admin login stuff ----------------------------------------------
+
+
+
+router.post("/login", (req, res, next) => {
+    passport.authenticate("local", (err, user, info) => {
+        if (err) console.log(err);
+        if (!user) res.send("No User Exists");
+        else {
+            req.logIn(user, (err) => {
+                if (err) console.log(err);
+                res.send("Successfully Authenticated");
+                console.log("test:" + req.user);
+            });
+        }
+    })(req, res, next);
+});
+
+router.post('/logout', function (req, res, next) {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.json({ status: "Logged Out" });
+    });
+});
+router.post("/register", (req, res) => {
+    console.log(req.body);
+});
+
+
+router.get("/user", (req, res) => {
+
+
+    if (req.isAuthenticated()) {
+        res.send(req.user);
+    } else {
+        res.send("Not Authenticated");
+    }
+
+});
+
+// ------------------------------------------------------- Database stuff -------------------------------------------------------
+router.get('/database/execs', async (req, res) => {
+    cnn.query('SELECT * FROM ExecutiveTeam where active = 1 order by priority desc', function (error, results, fields) {
+        if (error) throw error;
+        res.json(results);
+    });
+});
+
+
+router.get('/verify', async (req, res) => {
+
+    let token = decodeRegistrationToken(req.query.id);
+    if (token.expired) {
+        res.redirect('http://localhost:3000/Expired');
+        return;
+    }
+    let userId = token.userId;
+
+    cnn.query(`UPDATE MailingList SET verified = ? WHERE ID = ?`, [1, userId], function (error, results, fields) {
+        if (error) {
+            res.json({ status: "Error Updating Account" });
+            throw error;
+        }
+        res.redirect('http://localhost:3000/Events');
+    });
+
+});
+
 router.post('/signup', async (req, res) => {
 
     const human = await validateHuman(req.body.token);
@@ -223,23 +323,23 @@ router.post('/signup', async (req, res) => {
     }
 
     const transporter = nodemailer.createTransport({
-        host:  config.email_host,
+        host: config.email_host,
         port: config.email_port,
         secure: false,
         auth: {
             user: config.email_user,
             pass: config.email_pass,
         },
-        tls:{
-            rejectUnauthorized:false,
+        tls: {
+            rejectUnauthorized: false,
         },
     });
-    
-    
-    let member = { name: `${req.body.first} ${req.body.last}`, email: `${req.body.email}`, Program: `${req.body.program}`, CurrentYear: `${req.body.year}`};
+
+
+    let member = { name: `${req.body.first} ${req.body.last}`, email: `${req.body.email}`, Program: `${req.body.program}`, CurrentYear: `${req.body.year}` };
     await cnn.query('SELECT * FROM MailingList where Email=?', req.body.email, function (error, results, fields) {
         if (error) throw error;
-        if(results.length == 0) {
+        if (results.length == 0) {
             cnn.query('INSERT INTO MailingList SET ?', member, function (error, results, fields) {
                 if (error) throw error;
                 let userID = results.insertId || 9999;
@@ -263,12 +363,12 @@ router.post('/signup', async (req, res) => {
                     } else {
                         res.json({ status: "Check your email to verify your account" });
                     }
-                });    
+                });
 
             });
         } else {
             console.log(results);
-            if(results[0].verified == 1) {
+            if (results[0].verified == 1) {
                 res.json({ status: "Email already exists" });
             } else {
                 let userID = results[0].ID;
@@ -292,94 +392,13 @@ router.post('/signup', async (req, res) => {
                     } else {
                         res.json({ status: "Check your email to verify your account" });
                     }
-                });    
+                });
             }
         }
-    }); 
-
-});
-
-
-
-router.get('/verify', async (req, res) => {
-
-    let token = decodeRegistrationToken(req.query.id);
-    if (token.expired) {
-        res.redirect('http://localhost:3000/Expired');
-        return;
-    }
-    let userId = token.userId;
-
-    cnn.query(`UPDATE MailingList SET verified = ? WHERE ID = ?`, [1, userId], function (error, results, fields) {
-        if (error) {
-            res.json({ status: "Error Updating Account" });
-            throw error;
-        }
-        res.redirect('http://localhost:3000/Events');
-     });
-
-});
-
-
-
-
-
-router.post('/logout', function (req, res, next) {
-    req.logout(function (err) {
-        if (err) { return next(err); }
-        res.json({ status: "Logged Out" });
     });
-});
-
-router.get('/database/execs', async (req, res) => {
-    cnn.query('SELECT * FROM ExecutiveTeam where active = 1 order by priority desc', function (error, results, fields) {
-        if (error) throw error;
-        res.json(results);
-    });
-});
-
-// protected route
-router.get('/controlPanel', (req, res) => {
-    // check if user is authenticated
-    if (req.isAuthenticated()) {
-        res.json({ status: "Welcome To Camru!" });
-    } else {
-        res.json({ status: "Not Authenticated" });
-    }
 
 });
 
 
-// testing
 
 
-
-router.post("/login", (req, res, next) => {
-    console.log(req.body);
-   passport.authenticate("local", (err, user, info) => {
-        if (err) console.log(err);
-        if (!user) res.send("No User Exists");
-        else {
-             req.logIn(user, (err) => {
-                if (err) console.log(err);
-                res.send("Successfully Authenticated");
-                console.log("test:" + req.user);
-             });
-        }
-   })(req, res, next);
-});
-router.post("/register", (req, res) => {
-    console.log(req.body); 
- });
-
-
- router.get("/user", (req, res) => {
-
-
-    if (req.isAuthenticated()) {
-        res.send(req.user);
-    } else {
-        res.send("Not Authenticated");
-    }
-    
- });
