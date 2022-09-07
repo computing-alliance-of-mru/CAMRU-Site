@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
 import Waves from '../animated-components/Wave.js';
+import WorkInProgress from "./WorkInProgress.js";
 import { compact } from "lodash";
 import Footer from "./Footer.js";
 
@@ -88,51 +89,60 @@ const ContactForm = (props) => {
     e.target.reset();
   };
 
-  return (
-    <div className="w-full h-[100vh]">
-      <Navbar isLoggedIn={props.isLoggedIn}/>
-      <div className="absolute top-0 w-full -z-10">
-        <Waves/>
+  let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_CONTACT;
+  if(underConstruction === "True" || underConstruction === undefined)  {
+    return(
+      <div>
+        <WorkInProgress />
       </div>
-      <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
-        <div></div>
-        <div className="w-[85%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[40%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">
-          <form onSubmit={handleSubmit} className="bg-[#f0f0f0] shadow-lg rounded px-6 py-6">
-          <h1 className="text-xl font-bold text-center text-gray-800">Cᴏɴᴛᴀᴄᴛ Us</h1>
-            <div className="mb-4">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">Name:</label>
-              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="name" required />
-            </div>
-            <div className="mb-4">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">Email:</label>
-              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" id="email" required />
-            </div>
-            <div className="mb-4">
-              <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message:</label>
-              <textarea className=" no-resize appearance-none block w-full bg-gray-400 text-white border border-gray-200 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:text-gray-600 focus:border-gray-500 h-40 resize-non"id="message" required />
-            </div>
-            <div className=" flex flex-col xl:flex-row xl:justify-between items-center ">
-              <div id = "recaptcha-contact" className="xl:mr-4">
-                <Reaptcha 
-                  sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY} 
-                  size={capchaStatus} 
-                  onVerify={onVerify}
-                  onExpire={onExpire}
-                  ref={recaptchaRef} 
-                  badge='inline'/>
-              </div>
-              <button className="mt-5 xl:ml-4 xl:mt-0 h-10 w-40 shadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" disabled={submitting}>{status} </button>
-            </div>
-            <p className={"text-s italic text-center pt-3 font-semibold " + messageColor}>​{message}</p>
-          </form>
+    )
+  } else {
+    return (
+      <div className="w-full h-[100vh]">
+        <Navbar isLoggedIn={props.isLoggedIn}/>
+        <div className="absolute top-0 w-full -z-10">
+          <Waves/>
         </div>
-        <div className="w-full bottom-0" > 
-          <Footer />
-        </div> 
+        <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
+          <div></div>
+          <div className="w-[85%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[40%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">
+            <form onSubmit={handleSubmit} className="bg-[#f0f0f0] shadow-lg rounded px-6 py-6">
+            <h1 className="text-xl font-bold text-center text-gray-800">Cᴏɴᴛᴀᴄᴛ Us</h1>
+              <div className="mb-4">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">Name:</label>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="name" required />
+              </div>
+              <div className="mb-4">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">Email:</label>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" id="email" required />
+              </div>
+              <div className="mb-4">
+                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message:</label>
+                <textarea className=" no-resize appearance-none block w-full bg-gray-400 text-white border border-gray-200 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:text-gray-600 focus:border-gray-500 h-40 resize-non"id="message" required />
+              </div>
+              <div className=" flex flex-col xl:flex-row xl:justify-between items-center ">
+                <div id = "recaptcha-contact" className="xl:mr-4">
+                  <Reaptcha 
+                    sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY} 
+                    size={capchaStatus} 
+                    onVerify={onVerify}
+                    onExpire={onExpire}
+                    ref={recaptchaRef} 
+                    badge='inline'/>
+                </div>
+                <button className="mt-5 xl:ml-4 xl:mt-0 h-10 w-40 shadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" disabled={submitting}>{status} </button>
+              </div>
+              <p className={"text-s italic text-center pt-3 font-semibold " + messageColor}>​{message}</p>
+            </form>
+          </div>
+          <div className="w-full bottom-0" > 
+            <Footer />
+          </div> 
+        </div>
       </div>
-    </div>
-    
-  );
+      
+    );
+  }
 };
 
 

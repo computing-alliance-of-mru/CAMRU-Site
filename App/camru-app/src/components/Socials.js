@@ -35,7 +35,7 @@ const Socials = (prop) => {
               </a>
             </div>
             <div className="ml-3 mr-3">
-              <a href="https://twitter.com/MRU_Computing" target="_blank">
+              <a href="https://twitter.com/MRU_CAMRU" target="_blank">
               <svg 
                 className="w-6 h-6 text-white hover:text-[#00b1ff] fill-current transition duration-150 ease-out hover:ease-in"
                 role="img" viewBox="0 0 24 24" 
@@ -45,7 +45,7 @@ const Socials = (prop) => {
               </a>
             </div>
             <div className="ml-3 mr-3">
-              <a href="https://www.instagram.com/mru_computing/" target="_blank">
+              <a href="https://www.instagram.com/mru_camru/" target="_blank">
               <svg 
               className="w-6 h-6 text-white hover:text-[#00b1ff] fill-current transition duration-150 ease-out hover:ease-in"
               role="img" viewBox="0 0 24 24" 

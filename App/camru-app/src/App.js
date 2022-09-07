@@ -52,8 +52,8 @@ function App() {
   useEffect(() => {
     checkLoggedIn();
   }, []);
-  console.log(process.env.REACT_APP_UNDER_CONSTRUCTION)
-  if(process.env.REACT_APP_UNDER_CONSTRUCTION == "True")  {
+  let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_ALL
+  if(underConstruction === "True" || underConstruction === undefined)  {
     return(
       <Routes>
         <Route path="*" element={<WorkInProgress />} />
@@ -83,9 +83,6 @@ function App() {
         } />
         <Route path="/Get_Involved" element={
           <GetInvolved />
-        } />
-        <Route path="/Events" element={
-          <Events />
         } />
         <Route path="/Admin" element={
           <Admin

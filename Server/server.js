@@ -400,6 +400,39 @@ router.post('/signup', async (req, res) => {
 
 });
 
+// ------------------------------------------------------- API Stuff -------------------------------------------------------
 
+router.get('/api/discord', async (req, res) => {
+    const response = await fetch(`https://discord.com/api/guilds/492045394327371776?with_counts=true`,
+        {
+            method: "GET",
+            headers: {
+                "Authorization": `Bot ${config.discord_token}`,
+            }
+        }
+    );
+    const data = await response.json();
+    
+    res.json(data);
+});
+
+router.get('/api/discord/count', async (req, res) => {
+    const response = await fetch(`https://discord.com/api/guilds/492045394327371776?with_counts=true`,
+        {
+            method: "GET",
+            headers: {
+                "Authorization": `Bot ${config.discord_token}`,
+            }
+        }
+    );
+    const data = await response.json();
+
+    let count = {
+        "approximate_member_count": data.approximate_member_count,
+        "approximate_presence_count": data.approximate_presence_count
+    }
+    
+    res.json(count);
+});
 
 

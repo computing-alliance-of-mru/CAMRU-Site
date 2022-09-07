@@ -1,5 +1,6 @@
 {
   "name": "camru-app",
+  "homepage": "https://camru.ca",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",

@@ -9,6 +9,7 @@ import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
 import VantaNet from "../VantaJS-animated/VantaNet.js"; 
 import CheckBox from '../animated-components/Checkbox.js';
+import WorkInProgress from "./WorkInProgress.js";
 
 
 const Signup = (props) => {
@@ -77,7 +78,7 @@ const Signup = (props) => {
       setMessageColor("text-red-500")
     }
 
-    document.querySelector("#role").addEventListener("change", handleRoleChange);
+    document.querySelector("#role")?.addEventListener("change", handleRoleChange);
   
   });
 
@@ -130,78 +131,87 @@ const Signup = (props) => {
     e.reset();
   };
 
-  return (
-    <div className="w-full h-[100vh] relative">
-      <Navbar isLoggedIn={props.isLoggedIn}/>
-      <VantaNet styles={"fixed h-[100vh]"}/>
+  let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_SIGN_UP
+  if(underConstruction === "True" || underConstruction === undefined)  {
+    return(
+      <div>
+        <WorkInProgress />
+      </div>
+    )
+  } else {
+    return (
+      <div className="w-full h-[100vh] relative">
+        <Navbar isLoggedIn={props.isLoggedIn}/>
+        <VantaNet styles={"fixed h-[100vh]"}/>
 
-      <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
-        <div></div>
-        <div className="w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">
-            <h1 className="text-3xl font-bold text-center text-white underline">Sign Up</h1>
-          <form onSubmit={handleSubmit} id="signup-form" className="px-6 py-6 flex flex-col">
-            <div className="mb-4">
-              <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="fname">First Name:</label>
-              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="fname" required pattern="[A-Za-z]+"/>
-            </div>
-            <div className="mb-4">
-              <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="lname">Last Name:</label>
-              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="lname" required pattern="[A-Za-z]+"/>
-            </div>
-            <div className="mb-4">
-              <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="role">Role:</label>
-              <select id="role" class="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" required>
-                <option value="" disabled selected hidden>Choose a Role ...</option>
-                <option value="Student">Student</option>
-                <option value="Alumni">Alumni</option>
-                <option value="Faculty">Faculty</option>
-              </select>
-            </div>
-            {inputsProgram ? program : null}
-            {inputsYear ? year : null}
-            <div className="mb-2">
-              <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="email">Email:</label>
-              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" type="email" id="email" required pattern={emailRegex}/>
-              <div className="flex justify-center align-middle mt-2 hover:cursor-pointer">
-                <p className="text-center italic text-white text-sm pr-2">MRU Email Only</p>
-                <svg viewBox="0 0 46.071 46.071" width="20px" height="20px" fill="#ffffff" className="">{helpQuestion}</svg>
+        <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
+          <div></div>
+          <div className="w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">
+              <h1 className="text-3xl font-bold text-center text-white underline">Sign Up</h1>
+            <form onSubmit={handleSubmit} id="signup-form" className="px-6 py-6 flex flex-col">
+              <div className="mb-4">
+                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="fname">First Name:</label>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="fname" required pattern="[A-Za-z]+"/>
               </div>
-            </div>
-            <div className="w-full flex justify-center">
+              <div className="mb-4">
+                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="lname">Last Name:</label>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="lname" required pattern="[A-Za-z]+"/>
+              </div>
+              <div className="mb-4">
+                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="role">Role:</label>
+                <select id="role" class="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" required>
+                  <option value="" disabled selected hidden>Choose a Role ...</option>
+                  <option value="Student">Student</option>
+                  <option value="Alumni">Alumni</option>
+                  <option value="Faculty">Faculty</option>
+                </select>
+              </div>
+              {inputsProgram ? program : null}
+              {inputsYear ? year : null}
+              <div className="mb-2">
+                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="email">Email:</label>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" type="email" id="email" required pattern={emailRegex}/>
+                <div className="flex justify-center align-middle mt-2 hover:cursor-pointer">
+                  <p className="text-center italic text-white text-sm pr-2">MRU Email Only</p>
+                  <svg viewBox="0 0 46.071 46.071" width="20px" height="20px" fill="#ffffff" className="">{helpQuestion}</svg>
+                </div>
+              </div>
+              <div className="w-full flex justify-center">
 
-              <CheckBox text={"Mailing List"} type={true}/>
+                <CheckBox text={"Mailing List"} type={true}/>
 
-            </div>
-            
-            <p className={"text-s italic text-center font-semibold " + messageColor}>​{message}</p>
-            <div className="mt-2 col-span-2 mx-auto">
-              <button className="mt-2 sshadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:outline-[#00b1ff] text-white font-bold rounded w-32 text-xl py-3" type="submit">Sign Up</button>
-            </div> 
-            <div className="flex justify-center pt-2">
-              <a className="text-white px-3 text-xs">
-                Privacy
-              </a>
-              <a className="text-white px-3 text-xs">
-                Terms
-              </a>
-            </div>       
-          </form>
+              </div>
+              
+              <p className={"text-s italic text-center font-semibold " + messageColor}>​{message}</p>
+              <div className="mt-2 col-span-2 mx-auto">
+                <button className="mt-2 sshadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:outline-[#00b1ff] text-white font-bold rounded w-32 text-xl py-3" type="submit">Sign Up</button>
+              </div> 
+              <div className="flex justify-center pt-2">
+                <a className="text-white px-3 text-xs">
+                  Privacy
+                </a>
+                <a className="text-white px-3 text-xs">
+                  Terms
+                </a>
+              </div>       
+            </form>
+          </div>
+          <div></div>
+          <div className="inline">
+              <Reaptcha 
+                sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY} 
+                size="invisible" 
+                onVerify={onVerify}
+                onExpire={onExpire}
+                ref={recaptchaRef} 
+                badge='bottomright'/>
+          </div>
         </div>
-        <div></div>
-        <div className="inline">
-            <Reaptcha 
-              sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY} 
-              size="invisible" 
-              onVerify={onVerify}
-              onExpire={onExpire}
-              ref={recaptchaRef} 
-              badge='bottomright'/>
-        </div>
+        
       </div>
       
-    </div>
-    
-  );
+    );
+  }
 };
 
 
