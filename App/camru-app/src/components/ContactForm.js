@@ -97,7 +97,7 @@ const ContactForm = (props) => {
       <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
         <div></div>
         <div className="w-[85%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[40%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">
-          <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded px-6 py-6">
+          <form onSubmit={handleSubmit} className="bg-[#f0f0f0] shadow-lg rounded px-6 py-6">
           <h1 className="text-xl font-bold text-center text-gray-800">Cᴏɴᴛᴀᴄᴛ Us</h1>
             <div className="mb-4">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">Name:</label>
@@ -109,7 +109,7 @@ const ContactForm = (props) => {
             </div>
             <div className="mb-4">
               <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message:</label>
-              <textarea className=" no-resize appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-40 resize-none"id="message" required />
+              <textarea className=" no-resize appearance-none block w-full bg-gray-400 text-white border border-gray-200 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:text-gray-600 focus:border-gray-500 h-40 resize-non"id="message" required />
             </div>
             <div className=" flex flex-col xl:flex-row xl:justify-between items-center ">
               <div id = "recaptcha-contact" className="xl:mr-4">

@@ -70,9 +70,9 @@ const Navbar = (props) => {
                             About Us
                         </li>
                     </Link>
-                    <Link to="/Events">
+                    <Link to="/Get_Involved">
                         <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isEvents ? "underline font-semibold" : "")}>
-                            Events
+                            Get Involved
                         </li>
                     </Link>
                     <Link to="/Contact">

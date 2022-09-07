@@ -14,7 +14,6 @@ const WorkInProgress = (props) => {
 
   return (
     <div className="w-full h-[100vh] flex flex-col">
-      <Navbar isLoggedIn={props.isLoggedIn}/>
       <VantaTopology />
       <div className="w-[100vw] h-[40px] realitive flex-grow mt-10">
         <TypeAnimation
