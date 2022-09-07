@@ -52,55 +52,63 @@ function App() {
   useEffect(() => {
     checkLoggedIn();
   }, []);
+  console.log(process.env.REACT_APP_UNDER_CONSTRUCTION)
+  if(process.env.REACT_APP_UNDER_CONSTRUCTION == "True")  {
+    return(
+      <Routes>
+        <Route path="*" element={<WorkInProgress />} />
+      </Routes>
+    )
+  } else {
+    return (
+      <Routes>
+        <Route path="/" element={<Home
+          isLoggedIn={isLoggedIn}
+        />
+        } />
+        <Route path="/Contact" element={
+          <ContactForm
+            isLoggedIn={isLoggedIn}
+          />
+        } />
+        <Route path="/About" element={
+          <About
+            isLoggedIn={isLoggedIn}
+          />
+        } />
+        <Route path="/SignUp" element={
+          <SignUp
+            isLoggedIn={isLoggedIn}
+          />
+        } />
+        <Route path="/Get_Involved" element={
+          <GetInvolved />
+        } />
+        <Route path="/Events" element={
+          <Events />
+        } />
+        <Route path="/Admin" element={
+          <Admin
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+        } />
+        <Route path="/ControlPanel" element={
+          <ControlPanel
+            isLoggedIn={isLoggedIn}
+          />
+        } />
+        <Route path="/Logout" element={
+          <Logout
+            isLoggedIn={isLoggedIn}
+            setIsLoggedIn={setIsLoggedIn}
+          />
+        } />
+        <Route path="*" element={<NoMatch />} />
 
-  return (
-    <Routes>
-      <Route path="/" element={<Home
-        isLoggedIn={isLoggedIn}
-      />
-      } />
-      <Route path="/Contact" element={
-        <ContactForm
-          isLoggedIn={isLoggedIn}
-        />
-      } />
-      <Route path="/About" element={
-        <About
-          isLoggedIn={isLoggedIn}
-        />
-      } />
-      <Route path="/SignUp" element={
-        <SignUp
-          isLoggedIn={isLoggedIn}
-        />
-      } />
-      <Route path="/Get_Involved" element={
-        <GetInvolved />
-      } />
-      <Route path="/Events" element={
-        <Events />
-      } />
-      <Route path="/Admin" element={
-        <Admin
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      } />
-      <Route path="/ControlPanel" element={
-        <ControlPanel
-          isLoggedIn={isLoggedIn}
-        />
-      } />
-      <Route path="/Logout" element={
-        <Logout
-          isLoggedIn={isLoggedIn}
-          setIsLoggedIn={setIsLoggedIn}
-        />
-      } />
-      <Route path="*" element={<NoMatch />} />
-
-    </Routes>
-  );
+      </Routes>
+    );
+  }
 }
 
 export default App;
