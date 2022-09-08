@@ -21,7 +21,7 @@ const ControlPanel = (props) => {
     formData.append("name", name.value);
     formData.append("position", position.value);
     formData.append("file", file.files[0]);
-    axios.post("http://localhost:5000/addexec", formData, config)
+    axios.post(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/addexec`, formData, config)
 
 };
   const onClick = () => { };

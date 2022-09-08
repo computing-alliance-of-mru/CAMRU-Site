@@ -36,7 +36,7 @@ function App() {
       Axios({
         method: "GET",
         withCredentials: true,
-        url: "http://localhost:5000/user",
+        url: `${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/user`,
       }).then((res) => {
         if (res.data === "Not Authenticated") {
           setIsLoggedIn(false);

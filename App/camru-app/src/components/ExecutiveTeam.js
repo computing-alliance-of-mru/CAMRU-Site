@@ -9,7 +9,7 @@ const ExecutiveTeam = (props) => {
   const [executiveTeam, setExecutiveTeam] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:5000/database/execs')
+    fetch(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/database/execs`)
     .then(response => response.json())
     .then(data => {setExecutiveTeam(data)})
     .catch(err => console.log(err));

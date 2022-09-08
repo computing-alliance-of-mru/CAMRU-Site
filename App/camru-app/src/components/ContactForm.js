@@ -72,7 +72,7 @@ const ContactForm = (props) => {
       token: capchaToken,
     };
     console.log(JSON.stringify(details));
-    let response = await fetch("http://localhost:5000/contact", {
+    let response = await fetch(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/contact`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

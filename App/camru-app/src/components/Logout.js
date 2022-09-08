@@ -12,7 +12,7 @@ const Logout = (props) => {
       data: {
       },
       withCredentials: true,
-      url: "http://localhost:5000/logout",
+      url: `${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/logout`,
     }).then((res) => {
         console.log(res)
         props.setIsLoggedIn(false);

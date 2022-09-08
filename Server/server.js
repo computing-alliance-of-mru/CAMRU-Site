@@ -294,7 +294,7 @@ router.get('/verify', async (req, res) => {
 
     let token = decodeRegistrationToken(req.query.id);
     if (token.expired) {
-        res.redirect('http://localhost:3000/Expired');
+        res.redirect('http://localhost:3000/Signup');
         return;
     }
     let userId = token.userId;
@@ -346,7 +346,7 @@ router.post('/signup', async (req, res) => {
                 let userID = results.insertId || 9999;
                 let token = encodeRegistrationToken(userID);
                 //send email
-                let link = `http://localhost:5000/verify?id=${token}`;
+                let link = `${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/verify?id=${token}`;
                 const output = `
                 <h3>Welcome To CAMRU</h3>
                 <p>Hello,<br> Please Click on the link to verify your email.</p><br><a href="${link}">Click here to verify</a> 
@@ -375,7 +375,7 @@ router.post('/signup', async (req, res) => {
                 let userID = results[0].ID;
                 let token = encodeRegistrationToken(userID);
                 //send email
-                let link = `http://localhost:5000/verify?id=${token}`;
+                let link = `${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/verify?id=${token}`;
                 const output = `
                 <h3>Welcome To CAMRU</h3>
                 <p>Hello,<br> Please Click on the link to verify your email.</p><br><a href="${link}">Click here to verify</a> 

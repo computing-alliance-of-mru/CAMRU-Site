@@ -114,7 +114,7 @@ const Signup = (props) => {
       token: capchaToken,
     };
     
-    let response = await fetch("http://localhost:5000/signup", {
+    let response = await fetch(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/signup`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json;charset=utf-8",

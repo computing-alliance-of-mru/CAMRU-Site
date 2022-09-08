@@ -23,7 +23,7 @@ const Login = (props) => {
             password: loginPassword,
           },
           withCredentials: true,
-          url: "http://localhost:5000/login",
+          url: `${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/login`,
         }).then((res) => {
             console.log(res)
             if (res.data === "No User Exists") {
@@ -37,7 +37,7 @@ const Login = (props) => {
         Axios({
           method: "GET",
           withCredentials: true,
-          url: "http://localhost:5000/user",
+          url: `${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/user`,
         }).then((res) => {
           setData(res.data);
         //   redirect to admin page
@@ -68,7 +68,7 @@ const Login = (props) => {
                     </div>
                     <div class="md:w-8/12 lg:w-5/12 lg:ml-20">
                     
-                        {/* <form action="http://localhost:5000/login/password" method="POST"> */}
+                        {/* <form action=`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/login/password` method="POST"> */}
                             {/* <!-- Email input --> */}
                             <div class="mb-6">
                                 <input

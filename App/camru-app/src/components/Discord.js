@@ -21,7 +21,7 @@ const Discord = (prop) => {
   const [members, setMembers] = useState();
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/discord/count')
+    fetch(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/api/discord/count`)
     .then(response => response.json())
     .then(data => {
       setDiscordData(data);
