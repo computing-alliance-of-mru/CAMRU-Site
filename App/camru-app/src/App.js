@@ -82,7 +82,9 @@ function App() {
           />
         } />
         <Route path="/Get_Involved" element={
-          <GetInvolved />
+          <GetInvolved 
+            isLoggedIn={isLoggedIn}
+          />
         } />
         <Route path="/Admin" element={
           <Admin

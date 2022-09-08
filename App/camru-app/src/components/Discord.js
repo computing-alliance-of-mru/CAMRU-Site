@@ -17,8 +17,19 @@ import React, { useEffect, useState } from "react";
 const Discord = (prop) => {
 
   const [discordData, setDiscordData] = useState(null);
-  const [online, setOnline] = useState(120);
-  const [members, setMembers] = useState(512);
+  const [online, setOnline] = useState();
+  const [members, setMembers] = useState();
+
+  useEffect(() => {
+    fetch('http://localhost:5000/api/discord/count')
+    .then(response => response.json())
+    .then(data => {
+      setDiscordData(data);
+      setOnline(data.approximate_presence_count);
+      setMembers(data.approximate_member_count);
+    });
+
+  }, []);
   
   return (
     
@@ -61,7 +72,7 @@ const Discord = (prop) => {
       </div>  
       
       </div>
-      <div className="bg-[#f0f0f0] w-full p-4 rounded shadow-md mt-2 h-[150px]">
+      <div className="bg-[#f0f0f0] w-full p-4 rounded shadow-md mt-3 h-[150px]">
         <div className="w-full h-[50px] flex items-center justify-around">
           <img src="https://cdn.discordapp.com/icons/882703652429631509/a74a73aa22480b3eecaf57849c511235.webp" alt="discord" className="w-[50px] h-[50px] rounded-full" />
           <h1 className="text-black text-xl font-semibold">MRU Student Hub</h1>

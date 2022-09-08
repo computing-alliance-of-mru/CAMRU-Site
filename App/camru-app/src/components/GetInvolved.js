@@ -28,7 +28,7 @@ const GetInvolved = (props) => {
   } else {
     return (
       <div className="w-full h-[100vh]">
-        <Navbar />
+        <Navbar isLoggedIn={props.isLoggedIn}/>
         <div className="absolute top-0 w-full -z-10">
           <VantaTopology />
         </div>
@@ -46,7 +46,7 @@ const GetInvolved = (props) => {
             <h5 className=" items-center font-bold text-white text-3xl text-center pb-6 underline">
             Get Involved
             </h5>
-            <div className="grid gap-2 grid-cols-[300px_1fr] max-w-[1200px]">
+            <div className="grid gap-3 grid-cols-[300px_1fr] max-w-[1200px]">
               <Events />
               <Discord />
             </div>

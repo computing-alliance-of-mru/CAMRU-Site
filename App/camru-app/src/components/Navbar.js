@@ -20,7 +20,7 @@ const Navbar = (props) => {
         if (isOpen) {
             return "absolute bg-[#0f7ca7] w-full left-0 top-[45px] h-[calc(100vh-45px)] z-50";
         } else {
-            return "hidden";
+            return "hidden sm:block";
         }
     }
 
@@ -44,63 +44,54 @@ const Navbar = (props) => {
     }, [location]);
 
 
-    function makeFixed() {
-        if (isOpen) {
-            return "fixed";
-        } else {
-            return "";
-        }
-    }
-
 
     return (
-        <nav className={"realtive top-0 z-10 w-full sm:flex items-center justify-between flex-wrap bg-[#0f7ca7] h-[50px] px-4 " + makeFixed()}>
+        <nav className="realtive top-0 z-10 w-full bg-[#0f7ca7] h-[50px] px-4 flex justify-between align-middle">
             <div className="sm:hidden block">
                 <Hamburger color="#FFFFFF" rounded toggled={isOpen} toggle={setOpen} />
             </div>
-            <div className={"sm:bg-none sm:flex-grow sm:flex sm:items-center sm:w-auto sm:static " + getListOfLinks()}>
-                <ul className="sm:block text-sm sm:flex-grow pl-6">
+            <div className={"z-10 h-[50px] " + getListOfLinks()}>
+                <ul className="h-[50px] p-3">
                     <Link to="/">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isHome ? "underline font-semibold" : "")}>
+                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isHome ? "underline font-semibold" : "")}>
                             Home
                         </li>
                     </Link>
                     <Link to="/About">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isAbout ? "underline font-semibold" : "")} >
+                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isAbout ? "underline font-semibold" : "")} >
                             About Us
                         </li>
                     </Link>
                     <Link to="/Get_Involved">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isEvents ? "underline font-semibold" : "")}>
+                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isEvents ? "underline font-semibold" : "")}>
                             Get Involved
                         </li>
                     </Link>
                     <Link to="/Contact">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isContact ? "underline font-semibold" : "")}>
+                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isContact ? "underline font-semibold" : "")}>
                             Contact
                         </li>
                     </Link>
                     <Link to="/SignUp">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isSignUp ? "underline font-semibold" : "")}>
+                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isSignUp ? "underline font-semibold" : "")}>
                             Sign Up
                         </li>
                     </Link>
-                    {props.isLoggedIn ? (<Link to="/controlpanel">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " + (isControlPanel ? "underline font-semibold" : "")}>
+                    {props.isLoggedIn ? (
+                    <Link to="/controlpanel">
+                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isControlPanel ? "underline font-semibold" : "")}>
                             ControlPanel
                         </li>
                     </Link>) : null}
-                    
-
-
                 </ul>
             </div>
-            <div className="sm:flex absolute flex left-0 top-[12px] w-[80px] ml-[calc(100%-190px)]">
-            {props.isLoggedIn ? (<Link to="/logout">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mr-4 " }>
+            <div className="h-[50px] p-3 flex">
+                    {props.isLoggedIn ? (
+                    <Link to="/logout">
+                        <li className={"block sm:inline-block hover:text-white text-[rgb(2,48,72)] mr-4 " }>
                             Logout
                         </li>
-                    </Link>) : null}
+                    </Link>) : ""}
                 <p className="text-white pr-4 font-bold">CAMRU</p>
                 <img className="h-6 w-auto" src={logo} alt="camru logo" />
             </div>
