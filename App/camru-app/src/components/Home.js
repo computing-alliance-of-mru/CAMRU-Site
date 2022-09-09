@@ -11,7 +11,7 @@ import Waves from "../animated-components/Wave.js";
 const Home = (props) => {
 
   let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_HOME
-  if(underConstruction === "True" || underConstruction === undefined)  {
+  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
     return(
       <div>
         <WorkInProgress />

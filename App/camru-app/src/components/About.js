@@ -9,7 +9,7 @@ import WorkInProgress from "./WorkInProgress.js";
 
 const About = (props) => {
   let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_ABOUT;
-  if(underConstruction === "True" || underConstruction === undefined)  {
+  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
     return(
       <div>
         <WorkInProgress />

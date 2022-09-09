@@ -90,7 +90,7 @@ const ContactForm = (props) => {
   };
 
   let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_CONTACT;
-  if(underConstruction === "True" || underConstruction === undefined)  {
+  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
     return(
       <div>
         <WorkInProgress />

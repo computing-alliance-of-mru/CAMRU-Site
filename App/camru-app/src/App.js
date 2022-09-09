@@ -53,7 +53,7 @@ function App() {
     checkLoggedIn();
   }, []);
   let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_ALL
-  if(underConstruction === "True" || underConstruction === undefined)  {
+  if(!(isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !isLoggedIn))) {
     return(
       <Routes>
         <Route path="*" element={<WorkInProgress />} />

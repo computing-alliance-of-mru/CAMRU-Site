@@ -19,7 +19,7 @@ const GetInvolved = (props) => {
 
   const [name, setName] = useState("");
   let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_GET_INVOLVED;
-  if(underConstruction === "True" || underConstruction === undefined)  {
+  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
     return(
       <div>
         <WorkInProgress />

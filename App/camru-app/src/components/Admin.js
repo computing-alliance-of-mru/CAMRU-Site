@@ -12,7 +12,7 @@ import WorkInProgress from "./WorkInProgress.js";
 const Admin = (props) => {
 
   let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_ADMIN
-  if(underConstruction === "True" || underConstruction === undefined)  {
+  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
     return(
       <div>
         <WorkInProgress />

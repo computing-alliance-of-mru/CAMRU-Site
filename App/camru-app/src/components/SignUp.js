@@ -9,6 +9,7 @@ import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
 import VantaNet from "../VantaJS-animated/VantaNet.js"; 
 import CheckBox from '../animated-components/Checkbox.js';
+import SpinLoader from '../animated-components/SpinLoader.js';
 import WorkInProgress from "./WorkInProgress.js";
 
 
@@ -16,6 +17,7 @@ const Signup = (props) => {
   const recaptchaRef = React.useRef(null);
   const [message, setMessage] = useState("");
   const [messageColor, setMessageColor] = useState("text-black");
+  const [loading, setLoading] = useState(false);
 
   const [inputsYear, setInputsYear] = useState(false);
   const [inputsProgram, setInputsProgram] = useState(false);
@@ -50,6 +52,18 @@ const Signup = (props) => {
       <option value="4">4th +</option>
     </select>
   </div>;
+
+  const loadSpinner =  
+  <button className="mt-2 sshadow bg-[#0f7ca7] text-white font-bold rounded w-32 text-xl py-3 h-14" type="submit" disabled>
+  <SpinLoader />
+  </button>;
+
+  const submitButton =
+  <button className="mt-2 sshadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:outline-[#00b1ff] text-white font-bold rounded w-32 text-xl py-3 h-14" type="submit">
+   Sign Up
+  </button>
+
+
 
   let capchaToken = 'none';
   let isVerified = false; 
@@ -101,6 +115,7 @@ const Signup = (props) => {
   const handlePost = async (e) => {
     
     recaptchaRef.current?.reset();
+    setLoading(true);
 
     const { fname, lname, program, role, email, year} = e.elements;
     console.log(e.elements);
@@ -129,10 +144,11 @@ const Signup = (props) => {
     console.info(result.decoded);
     console.log(result.error ? result.error : result.status);
     e.reset();
+    setLoading(false);
   };
 
   let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_SIGN_UP
-  if(underConstruction === "True" || underConstruction === undefined)  {
+  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
     return(
       <div>
         <WorkInProgress />
@@ -171,9 +187,8 @@ const Signup = (props) => {
               <div className="mb-2">
                 <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="email">Email:</label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" type="email" id="email" required pattern={emailRegex}/>
-                <div className="flex justify-center align-middle mt-2 hover:cursor-pointer">
-                  <p className="text-center italic text-white text-sm pr-2">MRU Email Only</p>
-                  <svg viewBox="0 0 46.071 46.071" width="20px" height="20px" fill="#ffffff" className="">{helpQuestion}</svg>
+                <div className="flex justify-center align-middle mt-1 mb-3 hover:cursor-pointer">
+                <p className="text-center italic text-white text-sm pr-2">MRU Email Only</p>
                 </div>
               </div>
               <div className="w-full flex justify-center">
@@ -184,7 +199,7 @@ const Signup = (props) => {
               
               <p className={"text-s italic text-center font-semibold " + messageColor}>​{message}</p>
               <div className="mt-2 col-span-2 mx-auto">
-                <button className="mt-2 sshadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:outline-[#00b1ff] text-white font-bold rounded w-32 text-xl py-3" type="submit">Sign Up</button>
+                {loading ? loadSpinner : submitButton}
               </div> 
               <div className="flex justify-center pt-2">
                 <a className="text-white px-3 text-xs">
