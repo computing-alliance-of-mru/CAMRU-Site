@@ -118,7 +118,7 @@ const ContactForm = (props) => {
               </div>
               <div className="mb-4">
                 <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message:</label>
-                <textarea className=" no-resize appearance-none block w-full bg-gray-400 text-white border border-gray-200 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:text-gray-600 focus:border-gray-500 h-40 resize-non"id="message" required />
+                <textarea className=" no-resize appearance-none block w-full bg-gray-400 text-white border border-gray-200 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:text-gray-600 focus:border-gray-500 h-40 resize-non"id="message" required maxlength="600"/>
               </div>
               <div className=" flex flex-col xl:flex-row xl:justify-between items-center ">
                 <div id = "recaptcha-contact" className="xl:mr-4">
