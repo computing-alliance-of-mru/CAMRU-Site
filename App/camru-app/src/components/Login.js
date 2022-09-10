@@ -49,7 +49,7 @@ const Login = (props) => {
       if (props.isLoggedIn) {
 
         return (
-          <Navigate to="/controlPanel" />
+          <Navigate to="/ControlPanel" />
         );
       }
 

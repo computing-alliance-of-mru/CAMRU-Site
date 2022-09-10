@@ -6,6 +6,9 @@ import Navbar from './Navbar.js';
 import Float from "../animated-components/Float.js";
 import { Navigate } from "react-router-dom";
 import axios from "axios";
+
+
+import ExecutiveTeamBubbles from "./ExecutiveTeamBubbles.js";
 const ControlPanel = (props) => {
 
   // const [authenticated, setAuthenticated] = useState(null);
@@ -17,19 +20,30 @@ const ControlPanel = (props) => {
     const position = document.getElementById("position");
     const file = document.getElementById("image");
     const formData = new FormData();
-    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+    const config = { headers: { 'Content-Type': 'multipart/form-data' }, withCredentials: true };
     formData.append("name", name.value);
     formData.append("position", position.value);
     formData.append("file", file.files[0]);
-    axios.post(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/addexec`, formData, config)
 
-};
-  const onClick = () => { };
+
+
+    axios.post(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/addexec`, formData, config)
+      .then((response) => {
+        console.log(response);
+        alert("Successfully added executive");
+        window.location.reload();
+      }).catch((error) => {
+        console.log(error);
+      });
+
+  };
+
+
 
 
   if (!props.isLoggedIn) {
-    // return <Navigate to="/" />
     console.log("not logged in");
+    // return <Navigate to="/" />
   }
   return (
     console.log(props.isLoggedIn),
@@ -46,7 +60,7 @@ const ControlPanel = (props) => {
               <form onSubmit={handleSubmit} id="signup-form" className="px-6 py-6 flex flex-col">
                 <div className="mb-4">
                   <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="name">Name:</label>
-                  <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="name" required  />
+                  <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="name" required />
                 </div>
                 <div className="mb-4">
                   <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="position">Position:</label>
@@ -62,6 +76,10 @@ const ControlPanel = (props) => {
                 </div>
               </form>
 
+
+
+              <div className="text-center text-white pb-5">Current Team</div>
+              <ExecutiveTeamBubbles />
             </div>
             <div className="">Events</div>
 
