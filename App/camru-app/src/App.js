@@ -17,6 +17,8 @@ import Logout from "./components/Logout.js";
 
 import VantaNet from "./VantaJS-animated/VantaNet.js";
 import GetInvolved from "./components/GetInvolved.js";
+import PrivacyPolicy from "./legal/PrivacyPolicy.js";
+import TermsOfUse from "./legal/TermsOfUse.js";
 
 
 //animated backgrounds
@@ -58,6 +60,7 @@ function App() {
     return(
       <Routes>
         <Route path="*" element={<WorkInProgress />} />
+        <Route exact path="/terms" render={() => {window.location.href="./legal/TermsOfUse.html"}} />
       </Routes>
     )
   } else {
@@ -110,7 +113,8 @@ function App() {
           />
         } />
         <Route path="*" element={<NoMatch />} />
-
+        <Route path="/terms" element={<TermsOfUse />}/>
+        <Route path="/privacy" element={<PrivacyPolicy />}/>
       </Routes>
     );
   }

@@ -33,7 +33,7 @@ const Signup = (props) => {
   c1.163-0.386,2.585-0.658,4.156-0.658c4.751,0,7.021,2.627,7.021,5.615C29.604,15.423,28.022,17.223,26.653,18.735z"/>
 
   const program = <div className="mb-4">
-        <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="program">Program:</label>
+        <label className="block mb-2 font-bold tracking-wide text-white uppercase text-m" htmlFor="program">Program:</label>
         <select id="program" class="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" required>
           <option value="0" disabled selected hidden>Choose a program ...</option>
           <option value="CIS">Computer Information Systems</option>
@@ -43,7 +43,7 @@ const Signup = (props) => {
       </div>;
 
   const year = <div className="mb-4">
-    <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="program">Year:</label>
+    <label className="block mb-2 font-bold tracking-wide text-white uppercase text-m" htmlFor="program">Year:</label>
     <select id="year" class="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" required>
       <option value="0" disabled selected hidden>Current Year...</option>
       <option value="1">1st</option>
@@ -164,17 +164,17 @@ const Signup = (props) => {
           <div></div>
           <div className="w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">
               <h1 className="text-3xl font-bold text-center text-white underline">Sign Up</h1>
-            <form onSubmit={handleSubmit} id="signup-form" className="px-6 py-6 flex flex-col">
+            <form onSubmit={handleSubmit} id="signup-form" className="flex flex-col px-6 py-6">
               <div className="mb-4">
-                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="fname">First Name:</label>
+                <label className="block mb-2 font-bold tracking-wide text-white uppercase text-m" htmlFor="fname">First Name:</label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="fname" required/>
               </div>
               <div className="mb-4">
-                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="lname">Last Name:</label>
+                <label className="block mb-2 font-bold tracking-wide text-white uppercase text-m" htmlFor="lname">Last Name:</label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="lname" required/>
               </div>
               <div className="mb-4">
-                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="role">Role:</label>
+                <label className="block mb-2 font-bold tracking-wide text-white uppercase text-m" htmlFor="role">Role:</label>
                 <select id="role" class="shadow border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" required>
                   <option value="" disabled selected hidden>Choose a Role ...</option>
                   <option value="Student">Student</option>
@@ -185,29 +185,33 @@ const Signup = (props) => {
               {inputsProgram ? program : null}
               {inputsYear ? year : null}
               <div className="mb-2">
-                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="email">Email:</label>
+                <label className="block mb-2 font-bold tracking-wide text-white uppercase text-m" htmlFor="email">Email:</label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" type="email" id="email" required pattern={emailRegex}/>
-                <div className="flex justify-center align-middle mt-1 mb-3 hover:cursor-pointer">
-                <p className="text-center italic text-white text-sm pr-2">MRU Email Only</p>
+                <div className="flex justify-center mt-1 mb-3 align-middle hover:cursor-pointer">
+                <p className="pr-2 text-sm italic text-center text-white">MRU Email Only</p>
                 </div>
               </div>
-              <div className="w-full flex justify-center">
+              <div className="flex justify-center w-full">
 
                 <CheckBox text={"Mailing List"} type={true}/>
 
               </div>
               
               <p className={"text-s italic text-center font-semibold " + messageColor}>​{message}</p>
-              <div className="mt-2 col-span-2 mx-auto">
+              <div className="col-span-2 mx-auto mt-2">
                 {loading ? loadSpinner : submitButton}
               </div> 
               <div className="flex justify-center pt-2">
-                <a className="text-white px-3 text-xs">
-                  Privacy
-                </a>
-                <a className="text-white px-3 text-xs">
-                  Terms
-                </a>
+                <Link to="/privacy">
+                  <a className="px-3 text-xs text-white">
+                    Privacy
+                  </a>
+                </Link>
+                <Link to="/terms">
+                  <a className="px-3 text-xs text-white">
+                    Terms
+                  </a>
+                </Link>
               </div>       
             </form>
           </div>

@@ -50,36 +50,21 @@ const GetInvolved = (props) => {
           <VantaTopology />
         </div>
         <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between align-middle">
-          <div className="bg-[#023048] p-4 border-b-2 border-[#0f7ca7]">
-              <h1 className="items-center font-bold text-white text-7xl">
+          <div className="p-4 border-b-2 bg-camru-blue border-camru-blue5">
+              <h1 className="items-center text-4xl font-bold text-white sm:text-7xl">
               Welcome{name}!
               </h1>
-              <h3 className=" items-center font-bold text-white text-2xl pt-3 pl-5">
+              <h3 className="items-center pt-3 pl-5 text-lg font-bold text-white sm:text-2xl ">
               to the Computing Alliance of Mount Royal University
               </h3>
           </div>
 
-          <div className="flex-grow m-4 relative flex flex-col align-middle">
-            <h5 className=" items-center font-bold text-white text-3xl text-center pb-6 underline">
+          <div className="relative flex flex-col flex-grow m-4 align-middle">
+            <h5 className="items-center pb-6 text-3xl font-bold text-center text-white underline ">
             Get Involved
             </h5>
             <div className="grid gap-3 grid-cols-[300px_1fr] max-w-[1200px]">
-              {/* <Discord /> */}
-              <div className="w-[80vw] h-[40px] realitive flex-grow mt-10">
-                <TypeAnimation
-                  cursor={true}
-                  sequence={[
-                    'Under Construction.',
-                    2000,
-                    "Check Back Soon.",
-                    2000,
-                  ]}
-                  speed={40}
-                  wrapper="div"
-                  repeat={Infinity}
-                  className={"text-3xl font-bold text-white px-8"}
-                />
-              </div>
+              <Discord />
             </div>
           </div>
           <Footer />

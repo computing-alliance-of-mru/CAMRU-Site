@@ -24,11 +24,6 @@ const Navbar = (props) => {
         }
     }
 
-
-
-
-
-
     useEffect(() => {
         console.log(location.pathname + ' :: ' + props.isLoggedIn);
         location.pathname === "/" ? setHome(true) : setHome(false);
@@ -47,7 +42,7 @@ const Navbar = (props) => {
 
     return (
         <nav className="realtive top-0 z-10 w-full bg-[#0f7ca7] h-[50px] px-4 flex justify-between align-middle">
-            <div className="sm:hidden block">
+            <div className="block sm:hidden">
                 <Hamburger color="#FFFFFF" rounded toggled={isOpen} toggle={setOpen} />
             </div>
             <div className={"z-10 h-[50px] " + getListOfLinks()}>
@@ -92,8 +87,8 @@ const Navbar = (props) => {
                             Logout
                         </li>
                     </Link>) : ""}
-                <p className="text-white pr-4 font-bold">CAMRU</p>
-                <img className="h-6 w-auto" src={logo} alt="camru logo" />
+                <p className="pr-4 font-bold text-white">CAMRU</p>
+                <img className="w-auto h-6" src={logo} alt="camru logo" />
             </div>
         </nav>
     );

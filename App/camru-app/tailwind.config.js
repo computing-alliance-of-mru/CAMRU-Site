@@ -1,5 +1,5 @@
 module.exports = {
-  darkMode: ['class', '[data-mode="dark"]'],
+  darkMode: 'media',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
@@ -10,6 +10,8 @@ module.exports = {
         'camru-blue2': '#023756',
         'camru-blue3': '#015983',
         'camru-blue4': '#016A98',
+        'camru-blue5': '#0f7ca7',
+        'camru-blue6': '#0183B0',
       },
     },
   },
