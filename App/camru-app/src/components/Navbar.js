@@ -30,13 +30,13 @@ const Navbar = (props) => {
 
 
     useEffect(() => {
-        console.log(location.pathname + ' :: ' + props.isLoggedIn);
+        // console.log(location.pathname + ' :: ' + props.isLoggedIn);
         location.pathname === "/" ? setHome(true) : setHome(false);
         location.pathname === "/Contact" ? setContact(true) : setContact(false);
         location.pathname === "/About" ? setAbout(true) : setAbout(false);
         location.pathname === "/SignUp" ? setSignUp(true) : setSignUp(false);
         location.pathname === "/Events" ? setEvents(true) : setEvents(false);
-        location.pathname === "/controlpanel" ? setIsControlPanel(true) : setIsControlPanel(false);
+        location.pathname === "/ControlPanel" ? setIsControlPanel(true) : setIsControlPanel(false);
         function handleResize() {
             setOpen(false);
         }
@@ -78,7 +78,7 @@ const Navbar = (props) => {
                         </li>
                     </Link>
                     {props.isLoggedIn ? (
-                    <Link to="/controlpanel">
+                    <Link to="/ControlPanel">
                         <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isControlPanel ? "underline font-semibold" : "")}>
                             ControlPanel
                         </li>

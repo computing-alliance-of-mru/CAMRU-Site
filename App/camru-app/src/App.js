@@ -29,11 +29,9 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
-  function checkLoggedIn() {
-    console.log("isLoggedin: " + isLoggedIn);
+  async function checkLoggedIn() {
     if (isLoggedIn === null) {
-      console.log("get")
-      Axios({
+      await Axios({
         method: "GET",
         withCredentials: true,
         url: `${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/user`,
@@ -45,7 +43,6 @@ function App() {
         }
       });
     }
-    console.log("isLoggedin: " + isLoggedIn);
 
   }
 
