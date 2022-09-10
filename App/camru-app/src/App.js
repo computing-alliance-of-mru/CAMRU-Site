@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ContactForm from './components/ContactForm.js';
 import Home from './components/Home.js';
 import SignUp from './components/SignUp.js';
+import Expired from './components/Expired.js';
 import Events from './components/GetInvolved.js';
 import About from './components/About.js';
 import NoMatch from './components/NoMatch.js';
@@ -101,6 +102,11 @@ function App() {
           <Logout
             isLoggedIn={isLoggedIn}
             setIsLoggedIn={setIsLoggedIn}
+          />
+        } />
+        <Route path="/Expired" element={
+          <Expired
+            isLoggedIn={isLoggedIn}
           />
         } />
         <Route path="*" element={<NoMatch />} />

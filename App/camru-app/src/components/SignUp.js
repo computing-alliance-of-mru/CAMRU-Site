@@ -67,7 +67,7 @@ const Signup = (props) => {
 
   let capchaToken = 'none';
   let isVerified = false; 
-  let emailRegex = "^[a-zA-Z0-9]+@mtroyal.ca$";
+  let emailRegex = "^[a-zA-Z0-9]+@mtroyal.ca[\s]{0,3}$";
 
   const handleRoleChange = (e) => {
     console.log(e.target.value);
@@ -167,11 +167,11 @@ const Signup = (props) => {
             <form onSubmit={handleSubmit} id="signup-form" className="px-6 py-6 flex flex-col">
               <div className="mb-4">
                 <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="fname">First Name:</label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="fname" required pattern="[A-Za-z]+"/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="fname" required/>
               </div>
               <div className="mb-4">
                 <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="lname">Last Name:</label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="lname" required pattern="[A-Za-z]+"/>
+                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight bg-[#023048] focus:outline-[#00b1ff]" type="text" id="lname" required/>
               </div>
               <div className="mb-4">
                 <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="role">Role:</label>
