@@ -3,19 +3,15 @@ import ContactForm from './components/ContactForm.js';
 import Home from './components/Home.js';
 import SignUp from './components/SignUp.js';
 import Expired from './components/Expired.js';
-import Events from './components/GetInvolved.js';
 import About from './components/About.js';
 import NoMatch from './components/NoMatch.js';
 
 import { Route, Routes, useLocation } from "react-router-dom";
 import WorkInProgress from "./components/WorkInProgress.js";
 
-import Admin from "./components/Admin.js";
 import ControlPanel from "./components/ControlPanel.js";
 import Axios from "axios";
 import Logout from "./components/Logout.js";
-
-import VantaNet from "./VantaJS-animated/VantaNet.js";
 import GetInvolved from "./components/GetInvolved.js";
 import PrivacyPolicy from "./legal/PrivacyPolicy.js";
 import TermsOfUse from "./legal/TermsOfUse.js";
@@ -85,12 +81,6 @@ function App() {
         <Route path="/Get_Involved" element={
           <GetInvolved 
             isLoggedIn={isLoggedIn}
-          />
-        } />
-        <Route path="/Admin" element={
-          <Admin
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
           />
         } />
         <Route path="/ControlPanel" element={

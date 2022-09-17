@@ -9,7 +9,7 @@ const Float = (props) => {
 
   return (
 
-<div class="area -z-10" >
+<div class="area -z-10 fixed h-[100vh]" >
           <ul class="circles">
              <li>{logo}</li>
              <li>{logo}</li>

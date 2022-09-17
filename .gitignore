@@ -10,7 +10,7 @@
 
 # production
 /build
-
+/Server
 # misc
 .DS_Store
 .env
@@ -27,3 +27,6 @@ yarn-error.log*
 config.js
 Server/test.js
 Server/uploads/
+App/camru-app/.env.development
+App/camru-app/.env_old
+App/camru-app/.env.production
