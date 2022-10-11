@@ -82,7 +82,7 @@ function App() {
             isLoggedIn={isLoggedIn}
           />
         } />
-        <Route path="/Get_Involved" element={
+        <Route path="/GetInvolved" element={
           <GetInvolved 
             isLoggedIn={isLoggedIn}
           />

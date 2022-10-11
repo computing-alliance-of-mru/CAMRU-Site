@@ -13,6 +13,7 @@ const Navbar = (props) => {
     const [isAbout, setAbout] = useState(false);
     const [isSignUp, setSignUp] = useState(false);
     const [isControlPanel, setIsControlPanel] = useState(false);
+    const [isGetInvolved, setGetInvolved] = useState(false);
     const [isEvents, setEvents] = useState(false);
     
 
@@ -30,6 +31,7 @@ const Navbar = (props) => {
         location.pathname === "/Contact" ? setContact(true) : setContact(false);
         location.pathname === "/About" ? setAbout(true) : setAbout(false);
         location.pathname === "/SignUp" ? setSignUp(true) : setSignUp(false);
+        location.pathname === "/GetInvolved" ? setGetInvolved(true) : setGetInvolved(false);
         location.pathname === "/Events" ? setEvents(true) : setEvents(false);
         location.pathname === "/ControlPanel" ? setIsControlPanel(true) : setIsControlPanel(false);
         function handleResize() {
@@ -57,8 +59,8 @@ const Navbar = (props) => {
                             About Us
                         </li>
                     </Link>
-                    <Link to="/Get_Involved">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isEvents ? "underline font-semibold" : "")}>
+                    <Link to="/GetInvolved">
+                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isGetInvolved ? "underline font-semibold" : "")}>
                             Get Involved
                         </li>
                     </Link>
