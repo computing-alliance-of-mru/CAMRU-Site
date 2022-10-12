@@ -35,7 +35,7 @@ const Expired = (props) => {
    Send Link
   </button>
 
-  let emailRegex = "^[a-zA-Z0-9]+@mtroyal.ca$";
+  let emailRegex = "^[\S]+@mtroyal.ca[\s]{0,3}$";
 
   const handleRoleChange = (e) => {
     console.log(e.target.value);
@@ -103,17 +103,17 @@ const Expired = (props) => {
           <div className="w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">
               <h1 className="text-3xl font-bold text-center text-white">{heading}</h1>
                          
-              <p className="text-center italic text-white text-sm pt-2">enter your email to send verification link</p>
-            <form onSubmit={handleSubmit} id="signup-form" className="px-6 py-6 flex flex-col">
+              <p className="pt-2 text-sm italic text-center text-white">enter your email to send verification link</p>
+            <form onSubmit={handleSubmit} id="signup-form" className="flex flex-col px-6 py-6">
               <div className="mb-1">
-                <label className="block uppercase tracking-wide text-white text-m font-bold mb-2" htmlFor="email">Email:</label>
+                <label className="block mb-2 font-bold tracking-wide text-white uppercase text-m" htmlFor="email">Email:</label>
                 <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-[#00b1ff] bg-[#023048]" type="email" id="email" required pattern={emailRegex}/>
-                <div className="flex justify-center align-middle mt-1 mb-3 hover:cursor-pointer">
-                <p className="text-center italic text-white text-sm">MRU Email Only</p>
+                <div className="flex justify-center mt-1 mb-3 align-middle hover:cursor-pointer">
+                <p className="text-sm italic text-center text-white">MRU Email Only</p>
                 </div>
               </div>              
               <p className={"text-s italic text-center font-semibold " + messageColor}>​{message}</p>
-              <div className="mt-2 col-span-2 mx-auto">
+              <div className="col-span-2 mx-auto mt-2">
                 {loading ? loadSpinner : submitButton}
               </div>
             </form>
