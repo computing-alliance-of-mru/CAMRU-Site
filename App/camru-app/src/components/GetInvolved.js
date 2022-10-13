@@ -8,13 +8,10 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, Navigate } from "react-router-dom";
 import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
-import Waves from '../animated-components/Wave.js';
 import Footer from "./Footer.js";
 import Discord from "./Discord.js";
-import Events from "./Events.js";
-import VantaTopology from "../VantaJS-animated/VantaTopology";
+import VantaCells from '../VantaJS-animated/VantaCells.js';
 import WorkInProgress from "./WorkInProgress.js";
-import TypeAnimation from 'react-type-animation';
 
 
 const GetInvolved = (props) => {
@@ -47,7 +44,8 @@ const GetInvolved = (props) => {
       <div className="w-full h-[100vh]">
         <Navbar isLoggedIn={props.isLoggedIn}/>
         <div className="absolute top-0 w-full -z-10">
-          <VantaTopology />
+          {/* <VantaTopology /> */}
+          <VantaCells styles={"fixed h-[100vh]"}/>
         </div>
         <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between align-middle">
           <div className="p-4 border-b-2 bg-camru-blue border-camru-blue5">

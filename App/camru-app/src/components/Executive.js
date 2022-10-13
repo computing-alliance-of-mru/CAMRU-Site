@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 
 const Executive = (props) => {
-
+  // https://www.npmjs.com/package/react-preload-image
   
 
   return (
