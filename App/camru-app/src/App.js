@@ -60,10 +60,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home/>} />
           <Route path="/Contact" element={<ContactForm/>} />
-          <Route path="/About" element={<About
-              execData={execData}
-            />
-          } />
+          <Route path="/About" element={<About execData={execData}/>} />
           <Route path="/SignUp" element={<SignUp/>} />
           <Route path="/GetInvolved" element={<GetInvolved />} />      
           <Route path="/Expired" element={<Expired/>} />
