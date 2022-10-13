@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, } from "react";
 import ContactForm from './components/ContactForm.js';
 import Home from './components/Home.js';
 import SignUp from './components/SignUp.js';
@@ -21,6 +21,7 @@ import PrivacyPolicy from "./legal/PrivacyPolicy.js";
 import TermsOfUse from "./legal/TermsOfUse.js";
 
 
+
 //animated backgrounds
 //https://animatedbackgrounds.me/
 //https://www.vantajs.com/
@@ -31,6 +32,7 @@ function App() {
 
 
   const [isLoggedIn, setIsLoggedIn] = useState(null);
+  const [execData, setExecData] = useState([]);
 
   async function checkLoggedIn() {
     if (isLoggedIn === null) {
@@ -46,12 +48,37 @@ function App() {
         }
       });
     }
+  }
 
+  async function getExecData() {
+    if (localStorage.getItem("execData") === null) {
+      fetch(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/database/execs`)
+      .then(response => response.json())
+      .then(data => {
+        setExecData(data)
+        localStorage.setItem("execData", JSON.stringify(data));
+      })
+      .catch(err => console.log(err));
+    } else {
+      setExecData(JSON.parse(localStorage.getItem("execData")));
+      //check if local storage is the same as the database
+      fetch(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/database/execs`)
+      .then(response => response.json())
+      .then(data => {
+        if (JSON.stringify(data) !== localStorage.getItem("execData")) {
+          localStorage.setItem("execData", JSON.stringify(data));
+        }
+      })
+    }
   }
 
   useEffect(() => {
     checkLoggedIn();
+    getExecData();
   }, []);
+
+
+
   let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_ALL
   if(!(isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !isLoggedIn))) {
     return(
@@ -62,57 +89,58 @@ function App() {
     )
   } else {
     return (
-      <Routes>
-        <Route path="/" element={<Home
-          isLoggedIn={isLoggedIn}
-        />
-        } />
-        <Route path="/Contact" element={
-          <ContactForm
+        <Routes>
+          <Route path="/" element={<Home
             isLoggedIn={isLoggedIn}
           />
-        } />
-        <Route path="/About" element={
-          <About
-            isLoggedIn={isLoggedIn}
-          />
-        } />
-        <Route path="/SignUp" element={
-          <SignUp
-            isLoggedIn={isLoggedIn}
-          />
-        } />
-        <Route path="/GetInvolved" element={
-          <GetInvolved 
-            isLoggedIn={isLoggedIn}
-          />
-        } />
-        <Route path="/Admin" element={
-          <Admin
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
-        } />
-        <Route path="/ControlPanel" element={
-          <ControlPanel
-            isLoggedIn={isLoggedIn}
-          />
-        } />
-        <Route path="/Logout" element={
-          <Logout
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-          />
-        } />
-        <Route path="/Expired" element={
-          <Expired
-            isLoggedIn={isLoggedIn}
-          />
-        } />
-        <Route path="*" element={<NoMatch />} />
-        <Route path="/terms" element={<TermsOfUse />}/>
-        <Route path="/privacy" element={<PrivacyPolicy />}/>
-      </Routes>
+          } />
+          <Route path="/Contact" element={
+            <ContactForm
+              isLoggedIn={isLoggedIn}
+            />
+          } />
+          <Route path="/About" element={
+            <About
+              isLoggedIn={isLoggedIn}
+              execData={execData}
+            />
+          } />
+          <Route path="/SignUp" element={
+            <SignUp
+              isLoggedIn={isLoggedIn}
+            />
+          } />
+          <Route path="/GetInvolved" element={
+            <GetInvolved 
+              isLoggedIn={isLoggedIn}
+            />
+          } />
+          <Route path="/Admin" element={
+            <Admin
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          } />
+          <Route path="/ControlPanel" element={
+            <ControlPanel
+              isLoggedIn={isLoggedIn}
+            />
+          } />
+          <Route path="/Logout" element={
+            <Logout
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          } />
+          <Route path="/Expired" element={
+            <Expired
+              isLoggedIn={isLoggedIn}
+            />
+          } />
+          <Route path="*" element={<NoMatch />} />
+          <Route path="/terms" element={<TermsOfUse />}/>
+          <Route path="/privacy" element={<PrivacyPolicy />}/>
+        </Routes>
     );
   }
 }

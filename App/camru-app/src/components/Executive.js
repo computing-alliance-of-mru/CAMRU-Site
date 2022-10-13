@@ -6,12 +6,12 @@ const Executive = (props) => {
   
 
   return (
-    <div className="bg-camru-blue rounded-lg shadow-lg p-4">
+    <div className="p-4 rounded-lg shadow-lg bg-camru-blue">
         <div className="flex flex-col items-center">
-        <img src={props.photoPath} width="600" height="900" alt="Image" data-lazy-src={props.photoPath}  data-ll-status="loaded" loading="lazy" />
-        <div className="text-center mt-2">
-            <h3 className="text-lg font-medium title-font mb-1 text-white">{props.name}</h3>
-            <div className="w-36 lg:w-44 h-1 bg-camru-blue4 rounded mt-2 mb-4"></div>
+        <img src={props.photoPath} width="600" height="900" alt="Image"/>
+        <div className="flex flex-col justify-center w-full mt-2 text-center align-middle">
+            <h3 className="mb-1 text-lg font-medium text-white title-font">{props.name}</h3>
+            <div className="h-1 mt-2 mb-4 rounded w-[600] relative bg-camru-blue4"></div>
             <p className="text-white">{props.position}</p>
         </div>
         </div>
