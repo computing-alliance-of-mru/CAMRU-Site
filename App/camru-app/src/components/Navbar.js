@@ -12,9 +12,7 @@ const Navbar = (props) => {
     const [isContact, setContact] = useState(false);
     const [isAbout, setAbout] = useState(false);
     const [isSignUp, setSignUp] = useState(false);
-    const [isControlPanel, setIsControlPanel] = useState(false);
     const [isGetInvolved, setGetInvolved] = useState(false);
-    const [isEvents, setEvents] = useState(false);
     
 
     function getListOfLinks() {
@@ -26,14 +24,11 @@ const Navbar = (props) => {
     }
 
     useEffect(() => {
-        // console.log(location.pathname + ' :: ' + props.isLoggedIn);
         location.pathname === "/" ? setHome(true) : setHome(false);
         location.pathname === "/Contact" ? setContact(true) : setContact(false);
         location.pathname === "/About" ? setAbout(true) : setAbout(false);
         location.pathname === "/SignUp" ? setSignUp(true) : setSignUp(false);
         location.pathname === "/GetInvolved" ? setGetInvolved(true) : setGetInvolved(false);
-        location.pathname === "/Events" ? setEvents(true) : setEvents(false);
-        location.pathname === "/ControlPanel" ? setIsControlPanel(true) : setIsControlPanel(false);
         function handleResize() {
             setOpen(false);
         }
@@ -74,21 +69,9 @@ const Navbar = (props) => {
                             Sign Up
                         </li>
                     </Link>
-                    {props.isLoggedIn ? (
-                    <Link to="/ControlPanel">
-                        <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isControlPanel ? "underline font-semibold" : "")}>
-                            ControlPanel
-                        </li>
-                    </Link>) : null}
                 </ul>
             </div>
             <div className="h-[50px] p-3 flex">
-                    {props.isLoggedIn ? (
-                    <Link to="/logout">
-                        <li className={"block sm:inline-block hover:text-white text-[rgb(2,48,72)] mr-4 " }>
-                            Logout
-                        </li>
-                    </Link>) : ""}
                 <p className="pr-4 font-bold text-white">CAMRU</p>
                 <img className="w-auto h-6" src={logo} alt="camru logo" />
             </div>

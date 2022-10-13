@@ -32,17 +32,10 @@ const GetInvolved = (props) => {
       
   });
 
-  let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_GET_INVOLVED;
-  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
-    return(
-      <div>
-        <WorkInProgress />
-      </div>
-    )
-  } else {
+
     return (
       <div className="w-full h-[100vh]">
-        <Navbar isLoggedIn={props.isLoggedIn}/>
+        <Navbar />
         <div className="absolute top-0 w-full -z-10">
           {/* <VantaTopology /> */}
           <VantaCells styles={"fixed h-[100vh]"}/>
@@ -72,7 +65,7 @@ const GetInvolved = (props) => {
       </div>
       
     );
-  }
+  
 };
 
 

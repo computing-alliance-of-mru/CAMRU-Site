@@ -89,17 +89,10 @@ const ContactForm = (props) => {
     e.target.reset();
   };
 
-  let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_CONTACT;
-  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
-    return(
-      <div>
-        <WorkInProgress />
-      </div>
-    )
-  } else {
+
     return (
       <div className="w-full h-[100vh]">
-        <Navbar isLoggedIn={props.isLoggedIn}/>
+        <Navbar />
         <div className="absolute top-0 w-full -z-10">
           <Waves/>
         </div>
@@ -109,18 +102,18 @@ const ContactForm = (props) => {
             <form onSubmit={handleSubmit} className="bg-[#f0f0f0] shadow-lg rounded px-6 py-6">
             <h1 className="text-xl font-bold text-center text-gray-800">Cᴏɴᴛᴀᴄᴛ Us</h1>
               <div className="mb-4">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="name">Name:</label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="text" id="name" required />
+                <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" htmlFor="name">Name:</label>
+                <input className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" type="text" id="name" required />
               </div>
               <div className="mb-4">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="email">Email:</label>
-                <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" type="email" id="email" required />
+                <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" htmlFor="email">Email:</label>
+                <input className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" type="email" id="email" required />
               </div>
               <div className="mb-4">
-                <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="message">Message:</label>
-                <textarea className=" no-resize appearance-none block w-full bg-gray-400 text-white border border-gray-200 rounded py-3 px-4 mb-2 leading-tight focus:outline-none focus:bg-white focus:text-gray-600 focus:border-gray-500 h-40 resize-non"id="message" required maxlength="600"/>
+                <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" htmlFor="message">Message:</label>
+                <textarea className="block w-full h-40 px-4 py-3 mb-2 leading-tight text-white bg-gray-400 border border-gray-200 rounded appearance-none  no-resize focus:outline-none focus:bg-white focus:text-gray-600 focus:border-gray-500 resize-non"id="message" required maxlength="600"/>
               </div>
-              <div className=" flex flex-col xl:flex-row xl:justify-between items-center ">
+              <div className="flex flex-col items-center  xl:flex-row xl:justify-between">
                 <div id = "recaptcha-contact" className="xl:mr-4">
                   <Reaptcha 
                     sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY} 
@@ -135,14 +128,13 @@ const ContactForm = (props) => {
               <p className={"text-s italic text-center pt-3 font-semibold " + messageColor}>​{message}</p>
             </form>
           </div>
-          <div className="w-full bottom-0" > 
+          <div className="bottom-0 w-full" > 
             <Footer />
           </div> 
         </div>
       </div>
       
     );
-  }
 };
 
 

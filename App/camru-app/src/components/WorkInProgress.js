@@ -14,7 +14,7 @@ const WorkInProgress = (props) => {
 
   return (
     <div className="w-full h-[100vh] flex flex-col">
-      <Navbar isLoggedIn={props.isLoggedIn}/>
+      <Navbar/>
       <VantaTopology />
       <div className="w-[100vw] h-[40px] realitive flex-grow mt-10">
         <TypeAnimation
@@ -31,7 +31,7 @@ const WorkInProgress = (props) => {
           className={"text-3xl font-bold text-white px-8"}
         />
       </div>
-      <div className="w-full bottom-0" > 
+      <div className="bottom-0 w-full" > 
         <Footer />
       </div> 
     </div>

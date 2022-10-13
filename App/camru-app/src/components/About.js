@@ -8,17 +8,10 @@ import ExecutiveTeam from "./ExecutiveTeam.js";
 import WorkInProgress from "./WorkInProgress.js";
 
 const About = (props) => {
-  let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_ABOUT;
-  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
-    return(
-      <div>
-        <WorkInProgress />
-      </div>
-    )
-  } else {
+
     return (
       <div className="w-full h-[100vh]">
-        <Navbar isLoggedIn={props.isLoggedIn}/>
+        <Navbar/>
         <div className="absolute top-0 w-full -z-10">
           <VantaWaves
             shininess={20}
@@ -31,7 +24,7 @@ const About = (props) => {
         <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
           <div></div>
           <div className="w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[90%] ml-[50%] translate-x-[-50%] py-8 ">
-            <h1 className="items-center text-3xl font-bold text-center text-white  sm:text-4xl md:text-5xl xl:text-6xl">
+            <h1 className="items-center text-3xl font-bold text-center text-white sm:text-4xl md:text-5xl xl:text-6xl">
               Our Mission
             </h1>
             <div className="items-center py-5 font-bold text-center text-white">
@@ -42,7 +35,7 @@ const About = (props) => {
               Through the years CAMRU has helped many students find work terms, internships, and even full-time jobs through our networking events and sharing information from local companies we work with. We have been the catalyst to innumerable friendships and professional connections that will last a lifetime. As well, we have assisted students with academic, professional, and social support they have needed over the years.       
               </p>
             </div>
-            <h2 className="items-center pb-5 text-2xl font-bold text-center text-white  sm:text-3xl md:text-4xl xl:text-5xl">
+            <h2 className="items-center pb-5 text-2xl font-bold text-center text-white sm:text-3xl md:text-4xl xl:text-5xl">
               Our Team
             </h2>
             <ExecutiveTeam execData={props.execData}/>
@@ -54,7 +47,7 @@ const About = (props) => {
       </div>
     );
   }
-}
+
 
 
 export default About;
