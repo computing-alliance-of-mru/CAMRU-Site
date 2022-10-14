@@ -49,11 +49,11 @@ const Navbar = (props) => {
                             Home
                         </li>
                     </Link>
-                    <Link to="/About">
+                    {/* <Link to="/About">
                         <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isAbout ? "underline font-semibold" : "")} >
                             About Us
                         </li>
-                    </Link>
+                    </Link> */}
                     <Link to="/GetInvolved">
                         <li className={"block mt-4 sm:inline-block sm:mt-0 text-white hover:text-[rgb(2,48,72)] mx-2 " + (isGetInvolved ? "underline font-semibold" : "")}>
                             Get Involved

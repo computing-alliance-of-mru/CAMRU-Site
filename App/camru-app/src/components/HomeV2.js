@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import Footer from "./Footer.js";
 import Navbar from './Navbar.js';
 import Float from "../animated-components/Float.js";
+import ExecutiveTeam from "./ExecutiveTeam.js";
+import VantaWaves from "../VantaJS-animated/VantaWaves.js";
 import { Link } from "react-router-dom";
 
 const Home = (props) => {
@@ -11,40 +13,65 @@ const Home = (props) => {
     return (
         <div className="w-full h-[100vh]">
           <Navbar />
-          <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-start align-middle">
-            <div className="w-full -z-10 h-[300px]">
-                <div className="w-full flex flex-col justify-between h-[100%] ">
-                  <div></div>
-                  <div className="mx-3">
-                    <h1 className="items-center text-4xl font-bold text-center text-white sm:text-5xl md:text-6xl xl:text-7xl drop-shadow-xl shadow-white">
+          <div className="absolute top-0 w-full -z-10">
+          <VantaWaves
+            shininess={20}
+            waveHeight={30}
+            waveSpeed={0.6}
+            color={0xdddddd}
+            styles={`fixed h-[100vh]`}
+          />
+        </div>
+          <div className="relative flex flex-col justify-start w-full align-middle min-h-[calc(100vh-50px)]">
+            <div className="w-full z-10 h-[300px] flex flex-col justify-between">
+            <Float style={"h-[300px] absolute"}/> 
+                <div></div>
+                <div className="px-3">
+                  <h1 className="items-center text-4xl font-bold text-center text-white sm:text-5xl md:text-6xl xl:text-7xl drop-shadow-xl shadow-white">
                     Computing Alliance of Mount Royal University
-                    </h1>
-                    <div className="items-center mt-8 font-bold text-center text-white mx-3">
-                        A place for computing students to socialize, network, and learn.
-                    </div>
+                  </h1>
+                  <div className="items-center mx-3 mt-8 font-bold text-center text-white">
+                    A place for computing students to socialize, network, and learn.
                   </div>
-                  <div></div>
                 </div>
-                <Float style={"h-[300px] absolute"}/> 
+                <div className="w-full px-3 py-5 font-semibold text-center text-white">
+                  <p>{"{upcoming events here}"}</p>
+                </div>
             </div>
             
-            <div className="w-full ">
-              <h1 className="text-black text-xl font-semibold p-3 text-center">
-                We are Looking For Sponsors
-              </h1>
-              <div className="px-3 w-full text-center"> 
-                  {/* put sponsors here */}
-                  <div className="mt-3 text-center w-48 items-center">
+            <div className="w-full">
+              <div className="relative left-[50%] w-48 translate-x-[-50%]"> 
+                  <div className="items-center w-48 mt-3 text-center">
                     <div className="h-10 shadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded text-center w-48 cursor-pointer">
                       <Link to="/Contact">
                       Become A Sponsor
                       </Link>
                     </div>
-                    <p className="text-xs pt-1">Contact Us</p>
+                    <p className="pt-1 text-xs">Contact Us</p>
                   </div>
               </div>
-
             </div>
+
+            <div className="">
+              <h1 className="items-center text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl xl:text-6xl">
+                Our Mission
+              </h1>
+              <div className="items-center py-5 text-center text-gray-900">
+                <p>
+                Our purpose has always been to serve students interested in computing. We work to do this primarily through organizing events that provide value in a multitude of ways. Whether by hosting our annual networking event, a simple games night, or something in between, fostering a strong community is our top priority.
+                </p>
+                <p className="pt-3">
+                Through the years CAMRU has helped many students find work terms, internships, and even full-time jobs through our networking events and sharing information from local companies we work with. We have been the catalyst to innumerable friendships and professional connections that will last a lifetime. As well, we have assisted students with academic, professional, and social support they have needed over the years.       
+                </p>
+              </div>
+              <h2 className="items-center pb-5 text-2xl font-bold text-center text-black sm:text-3xl md:text-4xl xl:text-5xl">
+                Our Team
+              </h2>
+            </div>
+            <div className="w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[90%] ml-[50%] translate-x-[-50%] py-8 ">
+              <ExecutiveTeam execData={props.execData}/>
+            </div>
+
             <div className="flex-grow"></div>
             <div className="bottom-0 w-full" > 
               <Footer />

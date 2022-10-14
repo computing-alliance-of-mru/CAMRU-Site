@@ -59,7 +59,7 @@ function App() {
 
     return (
         <Routes>
-          <Route path="/" element={<HomeV2/>} />
+          <Route path="/" element={<HomeV2 execData={execData}/>} />
           <Route path="/Contact" element={<ContactForm/>} />
           <Route path="/About" element={<About execData={execData}/>} />
           <Route path="/SignUp" element={<SignUp/>} />
