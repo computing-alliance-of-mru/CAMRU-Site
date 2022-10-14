@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Footer from "./Footer.js";
 import Navbar from './Navbar.js';
 import Float from "../animated-components/Float.js";
+import Events from "./Events.js";
 import ExecutiveTeam from "./ExecutiveTeam.js";
 import VantaWaves from "../VantaJS-animated/VantaWaves.js";
 import { Link } from "react-router-dom";
@@ -34,11 +35,35 @@ const Home = (props) => {
                     A place for computing students to socialize, network, and learn.
                   </div>
                 </div>
-                <div className="w-full px-3 py-5 font-semibold text-center text-white">
-                  <p>{"{upcoming events here}"}</p>
+                <div className="w-full px-3 py-5 font-semibold text-center text-white underline animate-pulse drop-shadow-xl shadow-white">
+                  {/* Place to feature Upcoming events */}
+                  <Link to="/GetInvolved">
+                    Get Involved
+                  </Link>
                 </div>
             </div>
-            
+            {/* <div className="w-full py-3 text-center">
+              Event Details Here 
+            </div> */}
+            <div className="relative flex flex-col justify-center w-full align-middle">
+              <h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl xl:text-6xl">
+                Our Mission
+              </h1>
+              <div className="relative left-[50%] translate-x-[-25%] text-gray-900">
+                <p className="pt-3 w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%]">
+                Our purpose has always been to serve students interested in computing. We work to do this primarily through organizing events that provide value in a multitude of ways. Whether by hosting our annual networking event, a simple games night, or something in between, fostering a strong community is our top priority.
+                </p>
+                <p className="pt-3 w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%]">
+                Through the years CAMRU has helped many students find work terms, internships, and even full-time jobs through our networking events and sharing information from local companies we work with. We have been the catalyst to innumerable friendships and professional connections that will last a lifetime. As well, we have assisted students with academic, professional, and social support they have needed over the years.       
+                </p>
+              </div>
+            </div>
+            {/* <div className="w-full text-center">
+              <h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl xl:text-6xl">
+                Sponsors
+              </h1>
+              Sponsors Go Here 
+            </div> */}
             <div className="w-full">
               <div className="relative left-[50%] w-48 translate-x-[-50%]"> 
                   <div className="items-center w-48 mt-3 text-center">
@@ -52,23 +77,10 @@ const Home = (props) => {
               </div>
             </div>
 
-            <div className="">
-              <h1 className="items-center text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl xl:text-6xl">
-                Our Mission
-              </h1>
-              <div className="items-center py-5 text-center text-gray-900">
-                <p>
-                Our purpose has always been to serve students interested in computing. We work to do this primarily through organizing events that provide value in a multitude of ways. Whether by hosting our annual networking event, a simple games night, or something in between, fostering a strong community is our top priority.
-                </p>
-                <p className="pt-3">
-                Through the years CAMRU has helped many students find work terms, internships, and even full-time jobs through our networking events and sharing information from local companies we work with. We have been the catalyst to innumerable friendships and professional connections that will last a lifetime. As well, we have assisted students with academic, professional, and social support they have needed over the years.       
-                </p>
-              </div>
+            <div className="w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[90%] ml-[50%] translate-x-[-50%] py-8 ">
               <h2 className="items-center pb-5 text-2xl font-bold text-center text-black sm:text-3xl md:text-4xl xl:text-5xl">
                 Our Team
               </h2>
-            </div>
-            <div className="w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[90%] ml-[50%] translate-x-[-50%] py-8 ">
               <ExecutiveTeam execData={props.execData}/>
             </div>
 

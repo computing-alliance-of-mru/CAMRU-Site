@@ -61,7 +61,7 @@ const Discord = (prop) => {
         </div>
       </div>
       <div className="w-full h-[50px] flex justify-center items-center pt-3">
-        <a className="hover:bg-[#7289DA] bg-[#5865f2] w-full h-[30px] rounded-full text-white font-bold flex items-center justify-center shadow-md" href="https://discord.com/invite/9PHS2MSN?utm_source=Discord%20Widget&utm_medium=Connect" target="_blank">
+        <a className="hover:bg-[#7289DA] bg-[#5865f2] w-full h-[30px] rounded-full text-white font-bold flex items-center justify-center shadow-md" href="https://discord.gg/SDdB7DwZYz" target="_blank">
           <svg 
           className="w-6 h-6 pr-1 fill-current"
           role="img" viewBox="0 0 24 24" 
