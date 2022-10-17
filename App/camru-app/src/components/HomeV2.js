@@ -45,11 +45,11 @@ const Home = (props) => {
             {/* <div className="w-full py-3 text-center">
               Event Details Here 
             </div> */}
-            <div className="relative flex flex-col justify-center w-full align-middle">
+            <div className="relative flex flex-col justify-center align-middle">
               <h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl xl:text-6xl">
                 Our Mission
               </h1>
-              <div className="relative left-[50%] translate-x-[-25%] text-gray-900">
+              <div className="relative left-[50%] translate-x-[-50%] text-gray-900">
                 <p className="pt-3 w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%]">
                 Our purpose has always been to serve students interested in computing. We work to do this primarily through organizing events that provide value in a multitude of ways. Whether by hosting our annual networking event, a simple games night, or something in between, fostering a strong community is our top priority.
                 </p>
