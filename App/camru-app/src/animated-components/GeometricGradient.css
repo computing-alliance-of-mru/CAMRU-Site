@@ -1,0 +1,64 @@
+.GeometricGradient {
+	width: 100%;
+    height: 100vh;
+    z-index: -1;
+    animation: theme 25s linear infinite;
+    position: fixed;
+}
+ 
+.GeometricGradient:after, .GeometricGradient:before {
+	 content: '';
+	 display: block;
+	 position: fixed;
+	 z-index: -1;
+	 top: 0;
+	 width: 100vw;
+	 height: 100vh;
+	 width: 100vmax;
+	 height: 100vmax;
+	 background: rgba(0, 0, 0, 0.05);
+	 animation: background 90s linear infinite;
+}
+.GeometricGradient:after {
+	left: 15vw;
+    
+}
+
+ .GeometricGradient:before {
+	 right: 15vw;
+	 animation-delay: -30s;
+	 animation-direction: reverse;
+}
+
+ @keyframes theme {
+	 0% {
+		 background: #0f7ca7;
+	}
+	 16% {
+		 background: #015983;
+	}
+	 33% {
+		 background: #023756;
+	}
+	 50% {
+		 background: #023048;
+	}
+	 66% {
+		 background: #023756;
+	}
+	 83% {
+		 background: #015983;
+	}
+	 100% {
+		 background: #0f7ca7;
+	}
+}
+ @keyframes background {
+	 0% {
+		 transform: rotate(0deg);
+	}
+	 100% {
+		 transform: rotate(360deg);
+	}
+}
+ 

@@ -45,8 +45,8 @@ const Home = (props) => {
             {/* <div className="w-full py-3 text-center">
               Event Details Here 
             </div> */}
-            <div className="relative flex flex-col justify-center align-middle">
-              <h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl xl:text-6xl">
+            <div className="relative flex flex-col justify-center align-middle debug">
+              <h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl">
                 Our Mission
               </h1>
               <div className="relative left-[50%] translate-x-[-50%] text-gray-900">
@@ -59,7 +59,7 @@ const Home = (props) => {
               </div>
             </div>
             {/* <div className="w-full text-center">
-              <h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl xl:text-6xl">
+              <h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl">
                 Sponsors
               </h1>
               Sponsors Go Here 

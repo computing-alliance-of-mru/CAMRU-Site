@@ -15,7 +15,10 @@ html, body {
     top: 50px;
 }
 
-/* * {
+.debug *{
     box-shadow: inset 0px 0px 0px 1px #f00;
-} */
+}
 
+.debug {
+    box-shadow: inset 0px 0px 0px 1px #ff0;
+}

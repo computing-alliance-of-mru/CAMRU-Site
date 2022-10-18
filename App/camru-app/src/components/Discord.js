@@ -52,7 +52,7 @@ const Discord = (prop) => {
       </div>
       <div className="flex">
         <div className="w-full h-[50px] flex justify-center items-center">
-          <div className="bg-[#43B581] w-[10px] h-[10px] rounded-full"></div>
+          <div className="bg-[#43B581] w-[10px] h-[10px] rounded-full animate-pulse"></div>
           <span className="px-1 text-gray-600" >{online}</span><p className="text-gray-600">Online</p>
         </div>
         <div className="w-full h-[50px] flex justify-center items-center">

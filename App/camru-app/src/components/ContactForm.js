@@ -103,11 +103,11 @@ const ContactForm = (props) => {
             <h1 className="text-xl font-bold text-center text-gray-800">Cᴏɴᴛᴀᴄᴛ Us</h1>
               <div className="mb-4">
                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" htmlFor="name">Name:</label>
-                <input className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" type="text" id="name" required />
+                <input className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" type="text" id="name" placeholder="Optional" />
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" htmlFor="email">Email:</label>
-                <input className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" type="email" id="email" required />
+                <input className="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" type="email" id="email" placeholder="Optional" />
               </div>
               <div className="mb-4">
                 <label className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase" htmlFor="message">Message:</label>
