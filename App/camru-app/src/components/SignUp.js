@@ -147,17 +147,10 @@ const Signup = (props) => {
     setLoading(false);
   };
 
-  let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_SIGN_UP
-  if(!(props.isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !props.isLoggedIn))) {
-    return(
-      <div>
-        <WorkInProgress />
-      </div>
-    )
-  } else {
+
     return (
       <div className="w-full h-[100vh] relative">
-        <Navbar isLoggedIn={props.isLoggedIn}/>
+        <Navbar />
         <VantaNet styles={"fixed h-[100vh]"}/>
 
         <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
@@ -230,7 +223,7 @@ const Signup = (props) => {
       </div>
       
     );
-  }
+  
 };
 
 

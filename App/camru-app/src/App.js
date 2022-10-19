@@ -3,19 +3,13 @@ import ContactForm from './components/ContactForm.js';
 import Home from './components/Home.js';
 import SignUp from './components/SignUp.js';
 import Expired from './components/Expired.js';
-import Events from './components/GetInvolved.js';
 import About from './components/About.js';
 import NoMatch from './components/NoMatch.js';
 
 import { Route, Routes, useLocation } from "react-router-dom";
 import WorkInProgress from "./components/WorkInProgress.js";
 
-import Admin from "./components/Admin.js";
-import ControlPanel from "./components/ControlPanel.js";
-import Axios from "axios";
-import Logout from "./components/Logout.js";
 
-import VantaNet from "./VantaJS-animated/VantaNet.js";
 import GetInvolved from "./components/GetInvolved.js";
 import PrivacyPolicy from "./legal/PrivacyPolicy.js";
 import TermsOfUse from "./legal/TermsOfUse.js";
@@ -31,24 +25,7 @@ import TermsOfUse from "./legal/TermsOfUse.js";
 function App() {
 
 
-  const [isLoggedIn, setIsLoggedIn] = useState(null);
   const [execData, setExecData] = useState([]);
-
-  async function checkLoggedIn() {
-    if (isLoggedIn === null) {
-      await Axios({
-        method: "GET",
-        withCredentials: true,
-        url: `${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/user`,
-      }).then((res) => {
-        if (res.data === "Not Authenticated") {
-          setIsLoggedIn(false);
-        } else {
-          setIsLoggedIn(true);
-        }
-      });
-    }
-  }
 
   async function getExecData() {
     if (localStorage.getItem("execData") === null) {
@@ -73,76 +50,29 @@ function App() {
   }
 
   useEffect(() => {
-    checkLoggedIn();
     getExecData();
   }, []);
 
 
 
-  let underConstruction = process.env.REACT_APP_UNDER_CONSTRUCTION_ALL
-  if(!(isLoggedIn || (!(underConstruction === "True" || underConstruction === undefined) && !isLoggedIn))) {
-    return(
-      <Routes>
-        <Route path="*" element={<WorkInProgress />} />
-        <Route exact path="/terms" render={() => {window.location.href="./legal/TermsOfUse.html"}} />
-      </Routes>
-    )
-  } else {
+
     return (
         <Routes>
-          <Route path="/" element={<Home
-            isLoggedIn={isLoggedIn}
-          />
-          } />
-          <Route path="/Contact" element={
-            <ContactForm
-              isLoggedIn={isLoggedIn}
-            />
-          } />
-          <Route path="/About" element={
-            <About
-              isLoggedIn={isLoggedIn}
+          <Route path="/" element={<Home/>} />
+          <Route path="/Contact" element={<ContactForm/>} />
+          <Route path="/About" element={<About
               execData={execData}
             />
           } />
-          <Route path="/SignUp" element={
-            <SignUp
-              isLoggedIn={isLoggedIn}
-            />
-          } />
-          <Route path="/GetInvolved" element={
-            <GetInvolved 
-              isLoggedIn={isLoggedIn}
-            />
-          } />
-          <Route path="/Admin" element={
-            <Admin
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-          } />
-          <Route path="/ControlPanel" element={
-            <ControlPanel
-              isLoggedIn={isLoggedIn}
-            />
-          } />
-          <Route path="/Logout" element={
-            <Logout
-              isLoggedIn={isLoggedIn}
-              setIsLoggedIn={setIsLoggedIn}
-            />
-          } />
-          <Route path="/Expired" element={
-            <Expired
-              isLoggedIn={isLoggedIn}
-            />
-          } />
+          <Route path="/SignUp" element={<SignUp/>} />
+          <Route path="/GetInvolved" element={<GetInvolved />} />      
+          <Route path="/Expired" element={<Expired/>} />
           <Route path="*" element={<NoMatch />} />
           <Route path="/terms" element={<TermsOfUse />}/>
           <Route path="/privacy" element={<PrivacyPolicy />}/>
         </Routes>
     );
   }
-}
+
 
 export default App;

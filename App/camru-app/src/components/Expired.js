@@ -95,7 +95,7 @@ const Expired = (props) => {
  
     return (
       <div className="w-full h-[100vh] relative">
-        <Navbar isLoggedIn={props.isLoggedIn}/>
+        <Navbar/>
         <VantaNet styles={"fixed h-[100vh]"}/>
 
         <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
