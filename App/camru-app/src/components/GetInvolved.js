@@ -9,10 +9,13 @@ import { useSearchParams, Navigate } from "react-router-dom";
 import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
 import Footer from "./Footer.js";
-import Discord from "./Discord.js";
+import DiscordCAMRU from "./Discord_CAMRU.js";
+import DiscordMRU from "./Discord_MRU.js";
+import Events from "./Events.js";
 import VantaCells from '../VantaJS-animated/VantaCells.js';
 import GeometricGradient from "../animated-components/GeometricGradient.js";
 import WorkInProgress from "./WorkInProgress.js";
+import InvolvedSocials from "./InvolvedSocials.js";
 
 
 const GetInvolved = (props) => {
@@ -60,12 +63,18 @@ const GetInvolved = (props) => {
               </h3>
           </div>
 
-          <div className="relative flex flex-col flex-grow m-4 align-middle">
-            <h5 className="items-center pb-6 text-3xl font-bold text-center text-white underline ">
-            Get Involved
-            </h5>
-            <div className="grid gap-3 grid-cols-[300px_1fr] max-w-[1200px]">
-              <Discord />
+          <div className="relative flex flex-col m-auto align-middle debug">
+            <h3 className="items-center pb-6 text-3xl font-bold text-center text-white">
+              Upcoming Events
+            </h3>
+            <Events />
+            <h3 className="items-center pb-6 text-3xl font-bold text-center text-white">
+             Socials
+            </h3>
+            <div className="grid gap-3 grid-cols-[300px_1fr_1fr] ">
+              <DiscordCAMRU />
+              <DiscordMRU />
+              <InvolvedSocials />
             </div>
           </div>
           <Footer />

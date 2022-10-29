@@ -37,23 +37,21 @@ const Home = (props) => {
                 </div>
                 <div className="w-full px-3 py-5 font-semibold text-center text-white underline animate-pulse drop-shadow-xl shadow-white">
                   {/* Place to feature Upcoming events */}
-                  <Link to="/GetInvolved">
-                    Get Involved
-                  </Link>
+                  <a href="https://www.eventbrite.com/e/cybhers-1st-annual-networking-event-tickets-423924448437" target="_blank"><span>Promoted Event: </span>CybHER's 1st Annual Networking Event</a>
                 </div>
             </div>
             {/* <div className="w-full py-3 text-center">
               Event Details Here 
             </div> */}
-            <div className="relative flex flex-col justify-center align-middle debug">
+            <div className="relative flex flex-col justify-center align-middle">
               <h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl">
                 Our Mission
               </h1>
-              <div className="relative left-[50%] translate-x-[-50%] text-gray-900">
-                <p className="pt-3 w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%]">
+              <div className="relative text-gray-900 flex flex-col font-medium">
+                <p className="pt-3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] m-auto">
                 Our purpose has always been to serve students interested in computing. We work to do this primarily through organizing events that provide value in a multitude of ways. Whether by hosting our annual networking event, a simple games night, or something in between, fostering a strong community is our top priority.
                 </p>
-                <p className="pt-3 w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%]">
+                <p className="pt-3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] m-auto">
                 Through the years CAMRU has helped many students find work terms, internships, and even full-time jobs through our networking events and sharing information from local companies we work with. We have been the catalyst to innumerable friendships and professional connections that will last a lifetime. As well, we have assisted students with academic, professional, and social support they have needed over the years.       
                 </p>
               </div>
