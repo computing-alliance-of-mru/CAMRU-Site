@@ -9,9 +9,13 @@ import { useSearchParams, Navigate } from "react-router-dom";
 import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
 import Footer from "./Footer.js";
-import Discord from "./Discord.js";
+import DiscordCAMRU from "./Discord_CAMRU.js";
+import DiscordMRU from "./Discord_MRU.js";
+import Events from "./Events.js";
 import VantaCells from '../VantaJS-animated/VantaCells.js';
+import GeometricGradient from "../animated-components/GeometricGradient.js";
 import WorkInProgress from "./WorkInProgress.js";
+import InvolvedSocials from "./InvolvedSocials.js";
 
 
 const GetInvolved = (props) => {
@@ -20,16 +24,25 @@ const GetInvolved = (props) => {
   let [searchParams, setSearchParams] = useSearchParams();
   const [name, setName] = useState("");
 
-  useEffect(() => {
-    if (searchParams.getAll("id")[0] !== undefined) {
-      fetch(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/name?id=${searchParams.getAll("id")[0]}`)
+  const getName = (e) => {
+    let serachParam = searchParams.getAll("id")[0]
+    if (serachParam !== undefined) {
+      fetch(`${process.env.REACT_APP_SSL}://${process.env.REACT_APP_SERVER_HOST}/name?id=${serachParam}`)
       .then(response => response.json())
       .then(data => {
         console.log(data);
         setName(" " + data.status);
       });
     }
+  }
+
+  const getEvents = () => {
       
+  }
+
+  useEffect(() => {
+    getName();
+    getEvents();
   });
 
 
@@ -38,7 +51,7 @@ const GetInvolved = (props) => {
         <Navbar />
         <div className="absolute top-0 w-full -z-10">
           {/* <VantaTopology /> */}
-          <VantaCells styles={"fixed h-[100vh]"}/>
+          <GeometricGradient />
         </div>
         <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between align-middle">
           <div className="p-4 border-b-2 bg-camru-blue border-camru-blue5">
@@ -50,12 +63,18 @@ const GetInvolved = (props) => {
               </h3>
           </div>
 
-          <div className="relative flex flex-col flex-grow m-4 align-middle">
-            <h5 className="items-center pb-6 text-3xl font-bold text-center text-white underline ">
-            Get Involved
-            </h5>
-            <div className="grid gap-3 grid-cols-[300px_1fr] max-w-[1200px]">
-              <Discord />
+          <div className="relative flex flex-col m-auto align-middle debug">
+            <h3 className="items-center pb-6 text-3xl font-bold text-center text-white">
+              Upcoming Events
+            </h3>
+            <Events />
+            <h3 className="items-center pb-6 text-3xl font-bold text-center text-white">
+             Socials
+            </h3>
+            <div className="grid gap-3 grid-cols-[300px_1fr_1fr] ">
+              <DiscordCAMRU />
+              <DiscordMRU />
+              <InvolvedSocials />
             </div>
           </div>
           <Footer />

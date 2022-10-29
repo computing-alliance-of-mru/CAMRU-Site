@@ -9,7 +9,7 @@ const Float = (props) => {
 
   return (
 
-<div class="area -z-10" >
+<div className={"area -z-10 top-0 " + props.style} >
           <ul class="circles">
              <li>{logo}</li>
              <li>{logo}</li>

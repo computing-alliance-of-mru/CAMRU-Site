@@ -67,7 +67,7 @@ const Signup = (props) => {
 
   let capchaToken = 'none';
   let isVerified = false; 
-  let emailRegex = "^[\S]+@mtroyal.ca[\s]{0,3}$";
+  let emailRegex = "^*+@mtroyal.ca[\s]{0,3}$";
 
   const handleRoleChange = (e) => {
     console.log(e.target.value);
