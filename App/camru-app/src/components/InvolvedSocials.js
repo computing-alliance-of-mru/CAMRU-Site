@@ -11,7 +11,7 @@ const InvolvedSocials = (props) => {
   return (
     <div className="h-[150px] rounded">
       <div className="bg-[#f0f0f0] w-full p-4 rounded shadow-md">
-        <Socials />
+        <Socials color={"text-black"}/>
       </div>
     </div>
 

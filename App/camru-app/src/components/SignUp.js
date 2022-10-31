@@ -156,7 +156,10 @@ const Signup = (props) => {
         <div className="w-full flex flex-col relative h-[calc(100vh-50px)] justify-between">
           <div></div>
           <div className="w-[85%] sm:w-[60%] md:w-[50%] lg:w-[40%] xl:w-[30%] ml-[50%] translate-x-[-50%] py-8 max-w-[700px]">
+            <div className="">
               <h1 className="text-3xl font-bold text-center text-white underline">Sign Up</h1>
+              <p className="text-white text-center mt-2">Receive Updates on Events and Other Opportunites</p>
+            </div>
             <form onSubmit={handleSubmit} id="signup-form" className="flex flex-col px-6 py-6">
               <div className="mb-4">
                 <label className="block mb-2 font-bold tracking-wide text-white uppercase text-m" htmlFor="fname">First Name:</label>

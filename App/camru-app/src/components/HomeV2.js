@@ -48,10 +48,10 @@ const Home = (props) => {
                 Our Mission
               </h1>
               <div className="relative text-gray-900 flex flex-col font-medium">
-                <p className="pt-3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] m-auto">
+                <p className="pt-3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] m-auto max-w-[1800px]">
                 Our purpose has always been to serve students interested in computing. We work to do this primarily through organizing events that provide value in a multitude of ways. Whether by hosting our annual networking event, a simple games night, or something in between, fostering a strong community is our top priority.
                 </p>
-                <p className="pt-3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] m-auto">
+                <p className="pt-3 w-[90%] sm:w-[70%] md:w-[60%] lg:w-[50%] m-auto max-w-[1800px]">
                 Through the years CAMRU has helped many students find work terms, internships, and even full-time jobs through our networking events and sharing information from local companies we work with. We have been the catalyst to innumerable friendships and professional connections that will last a lifetime. As well, we have assisted students with academic, professional, and social support they have needed over the years.       
                 </p>
               </div>
@@ -75,7 +75,7 @@ const Home = (props) => {
               </div>
             </div>
 
-            <div className="w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[90%] ml-[50%] translate-x-[-50%] py-8 ">
+            <div className="w-[95%] sm:w-[75%] md:w-[65%] lg:w-[50%] xl:w-[90%] ml-[50%] translate-x-[-50%] py-8 max-w-[1800px]">
               <h2 className="items-center pb-5 text-2xl font-bold text-center text-black sm:text-3xl md:text-4xl xl:text-5xl">
                 Our Team
               </h2>

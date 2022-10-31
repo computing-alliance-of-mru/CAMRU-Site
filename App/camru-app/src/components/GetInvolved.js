@@ -63,7 +63,7 @@ const GetInvolved = (props) => {
               </h3>
           </div>
 
-          <div className="relative flex flex-col m-auto align-middle debug">
+          <div className="relative flex flex-col m-auto align-middle">
             <h3 className="items-center pb-6 text-3xl font-bold text-center text-white">
               Upcoming Events
             </h3>
