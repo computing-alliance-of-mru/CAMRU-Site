@@ -5,11 +5,9 @@
 import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
-import Reaptcha from 'reaptcha';
+import ReCAPTCHA from "react-google-recaptcha"
 import Navbar from './Navbar.js';
 import Waves from '../animated-components/Wave.js';
-import WorkInProgress from "./WorkInProgress.js";
-import { compact } from "lodash";
 import Footer from "./Footer.js";
 
 const ContactForm = (props) => {
@@ -39,11 +37,9 @@ const ContactForm = (props) => {
     window.addEventListener('resize', handleResize)
   });
 
-  const onVerify = async recaptchaResponse => {
+  const onVerify = recaptchaResponse => {
     setVarified(true);
-    await recaptchaRef.current?.getResponse().then(token => { 
-      setCapchaToken(token);
-    });
+    setCapchaToken(recaptchaResponse);
   }
 
   const onExpire = recaptchaResponse => {
@@ -115,11 +111,11 @@ const ContactForm = (props) => {
               </div>
               <div className="flex flex-col items-center  xl:flex-row xl:justify-between">
                 <div id = "recaptcha-contact" className="xl:mr-4">
-                  <Reaptcha 
+                  <ReCAPTCHA 
                     sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY} 
                     size={capchaStatus} 
-                    onVerify={onVerify}
-                    onExpire={onExpire}
+                    onChange={onVerify}
+                    onExpired={onExpire}
                     ref={recaptchaRef} 
                     badge='inline'/>
                 </div>

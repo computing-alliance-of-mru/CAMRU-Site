@@ -1,7 +1,6 @@
 import React, { useEffect, useState, } from "react";
 import ContactForm from './components/ContactForm.js';
 import Home from './components/Home.js';
-import HomeV2 from './components/HomeV2.js';
 import SignUp from './components/SignUp.js';
 import Expired from './components/Expired.js';
 import About from './components/About.js';
@@ -59,9 +58,8 @@ function App() {
 
     return (
         <Routes>
-          <Route path="/" element={<HomeV2 execData={execData}/>} />
+          <Route path="/" element={<Home execData={execData}/>} />
           <Route path="/Contact" element={<ContactForm/>} />
-          <Route path="/About" element={<About execData={execData}/>} />
           <Route path="/SignUp" element={<SignUp/>} />
           <Route path="/GetInvolved" element={<GetInvolved />} />      
           <Route path="/Expired" element={<Expired/>} />

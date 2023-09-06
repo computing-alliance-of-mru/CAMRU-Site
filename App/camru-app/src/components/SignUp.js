@@ -5,8 +5,8 @@
 import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
-import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
+import ReCAPTCHA from "react-google-recaptcha"
 import VantaNet from "../VantaJS-animated/VantaNet.js"; 
 import CheckBox from '../animated-components/Checkbox.js';
 import SpinLoader from '../animated-components/SpinLoader.js';
@@ -67,7 +67,7 @@ const Signup = (props) => {
 
   let capchaToken = 'none';
   let isVerified = false; 
-  let emailRegex = "^*+@mtroyal.ca[\s]{0,3}$";
+  let emailRegex = '\\S+@mtroyal.ca[\s]{0,3}';
 
   const handleRoleChange = (e) => {
     console.log(e.target.value);
@@ -213,11 +213,11 @@ const Signup = (props) => {
           </div>
           <div></div>
           <div className="inline">
-              <Reaptcha 
+              <ReCAPTCHA 
                 sitekey={process.env.REACT_APP_CAPTCHA_SITE_KEY} 
                 size="invisible" 
-                onVerify={onVerify}
-                onExpire={onExpire}
+                onChange={onVerify}
+                onExpired={onExpire}
                 ref={recaptchaRef} 
                 badge='bottomright'/>
           </div>

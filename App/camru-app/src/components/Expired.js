@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import Reaptcha from 'reaptcha';
 import Navbar from './Navbar.js';
 import VantaNet from "../VantaJS-animated/VantaNet.js"; 
 import CheckBox from '../animated-components/Checkbox.js';

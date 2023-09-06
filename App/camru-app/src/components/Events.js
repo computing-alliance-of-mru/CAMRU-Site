@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import useEventbrite from 'react-eventbrite-popup-checkout';
 
 import React, { useEffect, useState } from "react";
 
@@ -9,51 +10,53 @@ import React, { useEffect, useState } from "react";
 //https://discord.com/api/guilds/492045394327371776/widget.json 
 //https://discord.com/api/guilds/492045394327371776
 
+import TypeAnimation from 'react-type-animation';
+
 
 
 
 
 
 const Events = (prop) => {
-
-  const [evenData, setDiscordData] = useState(
-    {
-        id: "0123456789",
-        name: "Networking Event",
-        description: "Come join us for a networking event",
-        time: "January 2022",
-        location: "Mount Royal University",
-        link: "https://www.google.com",
-        detailedDescription: "Come join us for a networking event",
-    },
-    {
-        id: "9876543210",
-        name: "Alumni Panel",
-        description: "Come join us for the Alumni Panel",
-        time: "September 21, 2022",
-        location: "Mount Royal University",
-        link: "https://www.google.com",
-        detailedDescription: "Come join us for the Alumni Panel",
-    }
   
-  );
+  const handleOrderCompleted = React.useCallback(() => {
+    console.log('Order was completed successfully');
+  }, []);
 
+  const modalButtonCheckout = useEventbrite({
+    eventId: `444382168027`,
+    modal: true,
+    onOrderComplete: handleOrderCompleted,
+  });
 
-  
   return (
+    <>
+      <div className="w-full rounded h-[120px] col-span-2 bg-[#f0f0f0] flex justify-between flex-col">
+         <div id="my-app">
+          {/* guard for null - resolves when Eventbrite loads */}
+          {modalButtonCheckout && (
+            <button id={modalButtonCheckout.id} type="button">
+              Modal Checkout
+            </button>
+          )}
+        </div>
+      </div>
     
-    <div className="w-full rounded h-[500px] col-span-2">
-      
-      <div className="bg-[#f0f0f0] w-full rounded shadow-md h-[100%]">
-        <div className="bg-[#007caf] h-[50px] rounded-t">
-
-        </div>
-        <div className="h-[100px]">
-
-        </div>
-      </div>  
-      
-    </div>
+      <div className="w-full rounded h-[120px] col-span-2 flex justify-between flex-col mt-3">
+          <div className="">
+            <p className="max-w-[250px] text-center mx-auto font-semibold text-xl text-white">
+              Have an idea for an Event?
+            </p>
+            <div className="mt-4 h-10 w-40 shadow bg-[#0f7ca7] hover:bg-[#00b1ff] focus:shadow-outline focus:outline-none text-center text-white font-bold py-2 px-4 rounded mx-auto cursor-pointer">
+              <Link to="/Contact">
+              Contact Us
+              </Link>
+            </div>
+            <p className="text-sm text-center text-white">Recommend an Event</p>
+          </div>
+          <div className="flex-grow"></div>
+      </div>
+    </>
     
 
     

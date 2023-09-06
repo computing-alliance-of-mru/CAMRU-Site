@@ -11,10 +11,17 @@ html, body {
 }
 
 .Toastify__toast-container {
-
     top: 50px;
 }
 
 .debug, .debug *{
     box-shadow: inset 0px 0px 0px 1px #f00;
+}
+
+.xdebug {
+    box-shadow: inset 0px 0px 0px 1px #ff0;
+}
+
+.max-width-1040 {
+    max-width: 1040px;
 }
