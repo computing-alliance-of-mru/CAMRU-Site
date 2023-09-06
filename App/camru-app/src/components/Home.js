@@ -39,7 +39,7 @@ const Home = (props) => {
 					<h1 className="items-center pt-6 text-3xl font-bold text-center text-black sm:text-4xl md:text-5xl">
 						Our Mission
 					</h1>
-					<div className="relative text-gray-900 flex flex-col font-medium">
+					<div className="relative text-gray-900 flex flex-col font-medium px-5">
 						<p className="pt-3  m-auto max-w-[1060px] text-justify">
 							Our purpose has always been to serve students
 							interested in computing. We work to do this
