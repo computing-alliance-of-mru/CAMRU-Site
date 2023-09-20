@@ -1,7 +1,7 @@
 import { map } from "lodash";
 import React, { useEffect, useState } from "react";
-import Executive from "./Executive.js";
-import Socials from "./Socials.js";
+import Executive from "./Executive.jsx";
+import Socials from "./Socials";
 import twitter from '../assets/twitter.png';
 import linkedin from '../assets/linkedin.png';
 import facebook from '../assets/facebook.png';

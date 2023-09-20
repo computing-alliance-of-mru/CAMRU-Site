@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import NET from 'vanta/dist/vanta.net.min.js'
+import NET from 'vanta/dist/vanta.net.min'
 // Make sure window.THREE is defined, e.g. by including three.min.js in the document head using a <script> tag
 
 const VantaNet = (props) => {
@@ -28,7 +28,7 @@ const VantaNet = (props) => {
     }
   }, [vantaEffect])
   return <div className={"top-0 w-full -z-10 " + props.styles} ref={myRef}>
-    
+
   </div>
 }
 

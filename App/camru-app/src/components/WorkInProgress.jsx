@@ -3,18 +3,18 @@
 //https://github.com/sarneeh/reaptcha
 
 
-import Navbar from './Navbar.js';
-import VantaTopology from "../VantaJS-animated/VantaTopology";
-import Footer from "./Footer.js";
+import Navbar from './Navbar.jsx';
+import VantaTopology from "../VantaJS-animated/VantaTopology.jsx";
+import Footer from "./Footer.jsx";
 import TypeAnimation from 'react-type-animation';
 
 
 const WorkInProgress = (props) => {
-  
+
 
   return (
     <div className="w-full h-[100vh] flex flex-col">
-      <Navbar/>
+      <Navbar />
       <VantaTopology />
       <div className="w-[100vw] h-[40px] realitive flex-grow mt-10">
         <TypeAnimation
@@ -31,11 +31,11 @@ const WorkInProgress = (props) => {
           className={"text-3xl font-bold text-white px-8"}
         />
       </div>
-      <div className="bottom-0 w-full" > 
+      <div className="bottom-0 w-full" >
         <Footer />
-      </div> 
+      </div>
     </div>
-    
+
   );
 };
 
