@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import CELLS from 'vanta/dist/vanta.cells.min.js'
+import CELLS from 'vanta/dist/vanta.cells.min'
 // Make sure window.THREE is defined, e.g. by including three.min.js in the document head using a <script> tag
 
 const VantaCells = (props) => {
@@ -26,7 +26,7 @@ const VantaCells = (props) => {
     }
   }, [vantaEffect])
   return <div className={"top-0 w-full -z-10 " + props.styles} ref={myRef}>
-    
+
   </div>
 }
 

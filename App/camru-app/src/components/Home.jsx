@@ -1,11 +1,11 @@
 //creat component
 import React, { useEffect, useState } from "react";
-import Footer from "./Footer.js";
-import Navbar from "./Navbar.js";
-import Float from "../animated-components/Float.js";
-import Events from "./Events.js";
-import ExecutiveTeam from "./ExecutiveTeam.js";
-import VantaWaves from "../VantaJS-animated/VantaWaves.js";
+import Footer from "./Footer.jsx";
+import Navbar from "./Navbar";
+import Float from "../animated-components/Float";
+import Events from "./Events.jsx";
+import ExecutiveTeam from "./ExecutiveTeam.jsx";
+import VantaWaves from "../VantaJS-animated/VantaWaves.jsx";
 import { Link } from "react-router-dom";
 import sponsor from "../assets/LaunchPad.png";
 

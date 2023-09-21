@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import TOPOLOGY from 'vanta/dist/vanta.topology.min.js'
+import TOPOLOGY from 'vanta/dist/vanta.topology.min'
 // Make sure window.THREE is defined, e.g. by including three.min.js in the document head using a <script> tag
 
 const VantaTopology = (props) => {
@@ -25,7 +25,7 @@ const VantaTopology = (props) => {
     }
   }, [vantaEffect])
   return <div className="h-[100vh] fixed top-0 w-[100%] -z-10" ref={myRef}>
-    
+
   </div>
 }
 
