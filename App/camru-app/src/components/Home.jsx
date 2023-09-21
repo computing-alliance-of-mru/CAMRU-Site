@@ -83,7 +83,7 @@ const Home = (props) => {
 					<h2 className="items-center pb-5 text-2xl font-bold text-center text-black sm:text-3xl md:text-4xl xl:text-5xl">
 						Our Team
 					</h2>
-					{/* <ExecutiveTeam execData={props.execData} /> */}
+					<ExecutiveTeam execData={props.execData} />
 				</div>
 
 				<div className="flex-grow"></div>

@@ -51,7 +51,7 @@ function App() {
 
   useEffect(() => {
     getExecData();
-    console.log(import.meta.env.VITE_SERVER_HOST)
+    console.log("execData", execData);
   }, []);
 
 
